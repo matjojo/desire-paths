@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "net.fabricmc.desire_paths.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "OnGrassBlockAppendPropertiesMixin",
+    "OnMyceliumBlockAppendPropertiesMixin",
+    "OnPlayerAddStatisticsMixin",
+    "OnRegisterBlockMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

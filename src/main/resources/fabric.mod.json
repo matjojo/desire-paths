@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "desire-paths",
+  "version": "${version}",
+
+  "name": "Desire Paths",
+  "description": "A desire path is a path created as a consequence of erosion caused by human or animal foot-fall traffic. The path usually represents the shortest or most easily navigated route between an origin and destination.",
+  "authors": [
+    "Matjojo"
+  ],
+  "contact": {
+    "homepage": "https://github.com/matjojo/desire-paths",
+    "sources": "https://github.com/matjojo/desire-paths",
+    "issues": "https://github.com/matjojo/desire-paths/issues"
+  },
+
+  "license": "",
+  "icon": "assets/desire-paths/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+    ]
+  },
+  "mixins": [
+    "desire-paths.mixins.json"
+  ],
+  "requires": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "suggests": {
+    "flamingo": "*"
+  },
+  "custom": {
+    "modmenu:clientsideOnly": false
+  }
+}
