@@ -11,9 +11,9 @@ Have you even needed to make path blocks on the walk from your base to the mine?
 # How to install
 1. Download and install fabric from the how to install page here [https://fabricmc.net/wiki/install](https://fabricmc.net/wiki/install).
 2. Download the fabric api jar from here [https://minecraft.curseforge.com/projects/fabric](https://minecraft.curseforge.com/projects/fabric).
-3. Download the newest version that corresponds to the minecraft and fabric version you have from [this page.](https://github.com/matjojo/desire-paths/releases)
-4. Move both .jar files to your mods folder. It will be in `.minecraft/mods` If you are using multiMC you can select `Minecraft Folder` from the right mouse menu on the instance that you made in step one to get to the `.minecraft` folder easily.
+3. Download the newest version of desire-paths from [this page.](https://github.com/matjojo/desire-paths/releases)
+4. Move both .jar files to your mods folder. `.minecraft/mods` If you are using multiMC you can select `Minecraft Folder` from the right mouse menu on the instance that you made in step one to get to the `.minecraft` folder easily.
 
 # Modpack use
 - Singleplayer: You can just add both the fabric and the mod jar files to any fabric modpack.
-- Multiplayer:  You'll want to add both the jars to the server at least. Technically the mods works when only on the server, but it will be a bit janky. You're best off also adding them to the client.
+- Multiplayer:  You'll want to add both the jars to the server at least. Technically the mods works when only on the server, but it will work a bit better when on server and client.
