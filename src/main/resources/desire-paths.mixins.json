@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.fabricmc.desire_paths.mixin",
+  "package": "com.matjojo.desire_paths.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "OnGrassBlockAppendPropertiesMixin",

@@ -1,6 +1,6 @@
-package net.fabricmc.desire_paths.mixin;
+package com.matjojo.desire_paths.mixin;
 
-import net.fabricmc.desire_paths.data.DesirePathsDataHolder;
+import com.matjojo.desire_paths.data.DesirePathsDataHolder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;

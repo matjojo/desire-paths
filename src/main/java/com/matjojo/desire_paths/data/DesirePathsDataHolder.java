@@ -1,4 +1,4 @@
-package net.fabricmc.desire_paths.data;
+package com.matjojo.desire_paths.data;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

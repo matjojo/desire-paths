@@ -1,6 +1,6 @@
-package net.fabricmc.desire_paths.data.Blocks;
+package com.matjojo.desire_paths.data.Blocks;
 
-import net.fabricmc.desire_paths.data.DesirePathsDataHolder;
+import com.matjojo.desire_paths.data.DesirePathsDataHolder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateFactory;

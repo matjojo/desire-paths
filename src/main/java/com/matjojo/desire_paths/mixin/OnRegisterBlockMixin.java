@@ -1,8 +1,8 @@
-package net.fabricmc.desire_paths.mixin;
+package com.matjojo.desire_paths.mixin;
 
-import net.fabricmc.desire_paths.data.Blocks.GenericTrampleable;
-import net.fabricmc.desire_paths.data.Blocks.SnowyTrampleable;
-import net.fabricmc.desire_paths.data.DesirePathsDataHolder;
+import com.matjojo.desire_paths.data.Blocks.GenericTrampleable;
+import com.matjojo.desire_paths.data.Blocks.SnowyTrampleable;
+import com.matjojo.desire_paths.data.DesirePathsDataHolder;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
