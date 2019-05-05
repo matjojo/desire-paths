@@ -17,3 +17,7 @@ Have you even needed to make path blocks on the walk from your base to the mine?
 # Modpack use
 - Singleplayer: You can just add both the fabric and the mod jar files to any fabric modpack.
 - Multiplayer:  You'll want to add both the jars to the server at least. Technically the mods works when only on the server, but it will work a bit better when on server and client.
+
+# Future
+- gradual conversion from block to path
+- Support for more entities
