@@ -1,0 +1,8 @@
+{
+  "parent": "desire-paths:block/one_side_one_top",
+  "textures": {
+    "particle" : "block/dirt",
+    "top": "desire-paths:block/mycelium_dirt_inter_top11-25",
+    "side": "block/mycelium_side"
+  }
+}

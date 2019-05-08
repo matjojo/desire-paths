@@ -16,7 +16,10 @@
 package com.matjojo.desire_paths.data;
 
 
+import com.matjojo.desire_paths.init.DesirePathInitializer;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.property.IntegerProperty;
 
@@ -24,8 +27,6 @@ public class DesirePathsDataHolder {
     public static final int MAX_TRAMPLE;
     public static final IntegerProperty DESIRE_PATH_PROPERTY;
     private static final int speedThreshold;
-    private static final String[] BLOCK_NAMES_GENERIC_TO_CHANGE;
-    private static final String[] BLOCK_NAMES_SNOWY_TO_CHANGE;
 
     static {
         speedThreshold = 10; // Player moves 6, 22, 28 when crouching, walking, running.
@@ -33,17 +34,32 @@ public class DesirePathsDataHolder {
         // since you take, when walking, 100/22 = 4.5 ticks per block,
         // we'd want you to walk over the block about 5 times before getting a desire path
         DESIRE_PATH_PROPERTY = IntegerProperty.create("desiretramples", 0, DesirePathsDataHolder.MAX_TRAMPLE);
-        BLOCK_NAMES_GENERIC_TO_CHANGE = new String[]{
-                "dirt",
-                "coarse_dirt"
-        };
-        BLOCK_NAMES_SNOWY_TO_CHANGE = new String[]{
-                "podzol"
-        };
+    }
+
+    public static Block getNextBlock(Block currentBlock) {
+        if (Blocks.DIRT.equals(currentBlock)) {
+            return DesirePathInitializer.DIRT_COARSE_INTER;
+        } else if (DesirePathInitializer.DIRT_COARSE_INTER.equals(currentBlock)) {
+            return Blocks.COARSE_DIRT;
+        } else if (Blocks.GRASS_BLOCK.equals(currentBlock)) {
+            return DesirePathInitializer.GRASS_DIRT_INTER;
+        } else if (Blocks.MYCELIUM.equals(currentBlock)) {
+            return DesirePathInitializer.MYCELIUM_DIRT_INTER;
+        } else if (Blocks.PODZOL.equals(currentBlock)) {
+            return DesirePathInitializer.PODZOL_DIRT_INTER;
+        } // all non dirt_coarse_inter inters turn into dirt
+        return Blocks.DIRT;
+    }
+
+    public static boolean isBlockToChange(BlockState toCheck) {
+        return toCheck.getBlock().equals(Blocks.DIRT) ||
+                toCheck.getBlock().equals(Blocks.GRASS_BLOCK) ||
+                toCheck.getBlock().equals(Blocks.PODZOL) ||
+                toCheck.getBlock().equals(Blocks.MYCELIUM);
     }
 
 
-    public static boolean isBlockToChange(BlockState toCheck) {
+    public static boolean isBlockToTrample(BlockState toCheck) {
         return toCheck.getProperties().contains(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
     }
 
@@ -54,23 +70,6 @@ public class DesirePathsDataHolder {
                 player.onGround &&
                 !player.isSneaking() &&
                 !player.isInsideWater();
-    }
-
-    private static boolean shouldInjectTrampleableBlock(String blockName, String[] blockList) {
-        for (String changeable : blockList) {
-            if (blockName.equals(changeable)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean shouldInjectGenericTrampleableBlock(String blockName) {
-        return shouldInjectTrampleableBlock(blockName, BLOCK_NAMES_GENERIC_TO_CHANGE);
-    }
-
-    public static boolean shouldInjectSnowyTrampleableBlock(String blockName) {
-        return shouldInjectTrampleableBlock(blockName, BLOCK_NAMES_SNOWY_TO_CHANGE);
     }
 
 }

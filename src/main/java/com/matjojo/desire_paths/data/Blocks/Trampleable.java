@@ -12,22 +12,21 @@
 //
 //        You should have received a copy of the GNU General Public License
 //        along with this program.  If not, see <https://www.gnu.org/licenses/>.
-//
+
 package com.matjojo.desire_paths.data.Blocks;
 
 import com.matjojo.desire_paths.data.DesirePathsDataHolder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SnowyBlock;
+import net.minecraft.block.*;
 import net.minecraft.state.StateFactory;
 
-public class SnowyTrampleable extends SnowyBlock {
-    public SnowyTrampleable(Settings block$Settings_1) {
-        super(block$Settings_1);
+public class Trampleable extends GrassBlock implements Fertilizable {
+    public Trampleable(Settings block$Settings_1) {
+        super(block$Settings_1.dropsLike(Blocks.DIRT));
     }
 
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateBuilder) {
-        super.appendProperties(stateBuilder);
-        stateBuilder.with(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
+    @Override
+    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory$Builder_1) {
+        super.appendProperties(stateFactory$Builder_1);
+        stateFactory$Builder_1.add(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
     }
 }

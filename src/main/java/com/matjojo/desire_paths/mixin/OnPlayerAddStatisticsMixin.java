@@ -17,10 +17,9 @@ package com.matjojo.desire_paths.mixin;
 
 import com.matjojo.desire_paths.data.DesirePathsDataHolder;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.StringTextComponent;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
@@ -39,9 +38,9 @@ public abstract class OnPlayerAddStatisticsMixin {
         try {
             player = (PlayerEntity) self;
         } catch (ClassCastException exception) {
-            self.sendMessage(new StringTextComponent("An error occurred in the DesirePaths mod. Please report this to the mod creator."));
-            self.sendMessage(new StringTextComponent("Please give this error log to the mod creator, it is also in the log."));
-            self.sendMessage(new StringTextComponent(exception.getLocalizedMessage()));
+            self.sendMessage(new TextComponent("An error occurred in the DesirePaths mod. Please report this to the mod creator."));
+            self.sendMessage(new TextComponent("Please give this error log to the mod creator, it is also in the log."));
+            self.sendMessage(new TextComponent(exception.getLocalizedMessage()));
             exception.printStackTrace();
             return;
         }
@@ -57,17 +56,19 @@ public abstract class OnPlayerAddStatisticsMixin {
         BlockPos blockPositionBelowPlayer = new BlockPos(MathHelper.floor(player.x), MathHelper.floor(player.y) - 1, MathHelper.floor(player.z));
         BlockState blockStateBelowPlayer = player.world.getBlockState(blockPositionBelowPlayer);
 
-        if (DesirePathsDataHolder.isBlockToChange(blockStateBelowPlayer)) {
-            int currentTrampleValue = (Integer) blockStateBelowPlayer.get(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
+        if (DesirePathsDataHolder.isBlockToTrample(blockStateBelowPlayer)) {
+            int currentTrampleValue = blockStateBelowPlayer.get(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
             if (!(currentTrampleValue == DesirePathsDataHolder.MAX_TRAMPLE)) {
                 player.world.setBlockState(
                         blockPositionBelowPlayer,
                         blockStateBelowPlayer.with(DesirePathsDataHolder.DESIRE_PATH_PROPERTY, currentTrampleValue + 1),
                         DesirePathsDataHolder.MAX_TRAMPLE);
-            } else {// we set the block to path
-                player.world.setBlockState(blockPositionBelowPlayer, Blocks.GRASS_PATH.getDefaultState());
-
+            } else {// we set the block to the next level
+                player.world.setBlockState(blockPositionBelowPlayer, DesirePathsDataHolder.getNextBlock(blockStateBelowPlayer.getBlock()).getDefaultState());
             }
+        } else if (DesirePathsDataHolder.isBlockToChange(blockStateBelowPlayer)) {
+                player.world.setBlockState(blockPositionBelowPlayer, DesirePathsDataHolder.getNextBlock(blockStateBelowPlayer.getBlock()).getDefaultState());
+
         }
     }
 }

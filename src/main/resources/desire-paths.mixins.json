@@ -3,10 +3,8 @@
   "package": "com.matjojo.desire_paths.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "OnGrassBlockAppendPropertiesMixin",
-    "OnMyceliumBlockAppendPropertiesMixin",
     "OnPlayerAddStatisticsMixin",
-    "OnRegisterBlockMixin"
+    "OnPlantBlockCanPlantOnTopMixin"
   ],
   "client": [
   ],

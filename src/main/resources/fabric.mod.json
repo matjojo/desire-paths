@@ -20,6 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
+      "com.matjojo.desire_paths.init.DesirePathInitializer"
     ]
   },
   "mixins": [
