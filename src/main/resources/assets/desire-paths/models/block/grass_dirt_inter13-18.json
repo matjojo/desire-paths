@@ -1,0 +1,10 @@
+{
+  "parent": "desire-paths:block/block_one_side_one_top_overlay_on_both",
+  "textures": {
+    "particle": "block/dirt",
+    "top": "block/dirt",
+    "side": "block/grass_block_side",
+    "overlay": "block/grass_block_side_overlay",
+    "overlaytop": "desire-paths:block/grass_dirt_inter_top13-18-overlay"
+  }
+}

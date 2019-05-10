@@ -3,6 +3,6 @@
   "textures": {
     "particle" : "block/dirt",
     "top": "desire-paths:block/podzol_dirt_inter_top0-10",
-    "side": "block/dirt"
+    "side": "block/podzol_side"
   }
 }

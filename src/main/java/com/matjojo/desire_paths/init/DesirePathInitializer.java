@@ -25,10 +25,10 @@ import net.minecraft.util.registry.Registry;
 
 public class DesirePathInitializer implements ModInitializer {
 
-    public static final Block DIRT_COARSE_INTER =   new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).build());
-    public static final Block GRASS_DIRT_INTER =    new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).build());
-    public static final Block PODZOL_DIRT_INTER =   new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).build());
-    public static final Block MYCELIUM_DIRT_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).build());
+    public static final Block DIRT_COARSE_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().build());
+    public static final Block GRASS_DIRT_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().build());
+    public static final Block PODZOL_DIRT_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().build());
+    public static final Block MYCELIUM_DIRT_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().build());
 
     @Override
     public void onInitialize()

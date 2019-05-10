@@ -3,8 +3,8 @@
   "package": "com.matjojo.desire_paths.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "OnPlayerAddStatisticsMixin",
-    "OnPlantBlockCanPlantOnTopMixin"
+    "OnPlantBlockCanPlantOnTopMixin",
+    "OnIncreaseStatMixin"
   ],
   "client": [
   ],

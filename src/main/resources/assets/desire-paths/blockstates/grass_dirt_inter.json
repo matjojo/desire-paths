@@ -1,30 +1,82 @@
 {
   "variants": {
-    "desiretramples=0":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=1":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=2":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=3":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=4":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=5":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=6":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=7":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=8":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=9":  {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=10": {"model":  "desire-paths:block/grass_dirt_inter0-10"},
-    "desiretramples=11": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=12": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=13": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=14": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=15": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=16": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=17": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=18": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=19": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=20": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=21": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=22": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=23": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=24": {"model":  "desire-paths:block/grass_dirt_inter11-25"},
-    "desiretramples=25": {"model":  "desire-paths:block/grass_dirt_inter11-25"}
+    "desiretramples=0": {
+      "model": "desire-paths:block/grass_dirt_inter0-4"
+    },
+    "desiretramples=1": {
+      "model": "desire-paths:block/grass_dirt_inter0-4"
+    },
+    "desiretramples=2": {
+      "model": "desire-paths:block/grass_dirt_inter0-4"
+    },
+    "desiretramples=3": {
+      "model": "desire-paths:block/grass_dirt_inter0-4"
+    },
+    "desiretramples=4": {
+      "model": "desire-paths:block/grass_dirt_inter0-4"
+    },
+    "desiretramples=5": {
+      "model": "desire-paths:block/grass_dirt_inter5-8"
+    },
+    "desiretramples=6": {
+      "model": "desire-paths:block/grass_dirt_inter5-8"
+    },
+    "desiretramples=7": {
+      "model": "desire-paths:block/grass_dirt_inter5-8"
+    },
+    "desiretramples=8": {
+      "model": "desire-paths:block/grass_dirt_inter5-8"
+    },
+    "desiretramples=9": {
+      "model": "desire-paths:block/grass_dirt_inter9-12"
+    },
+    "desiretramples=10": {
+      "model": "desire-paths:block/grass_dirt_inter9-12"
+    },
+    "desiretramples=11": {
+      "model": "desire-paths:block/grass_dirt_inter9-12"
+    },
+    "desiretramples=12": {
+      "model": "desire-paths:block/grass_dirt_inter9-12"
+    },
+    "desiretramples=13": {
+      "model": "desire-paths:block/grass_dirt_inter13-18"
+    },
+    "desiretramples=14": {
+      "model": "desire-paths:block/grass_dirt_inter13-18"
+    },
+    "desiretramples=15": {
+      "model": "desire-paths:block/grass_dirt_inter13-18"
+    },
+    "desiretramples=16": {
+      "model": "desire-paths:block/grass_dirt_inter13-18"
+    },
+    "desiretramples=17": {
+      "model": "desire-paths:block/grass_dirt_inter13-18"
+    },
+    "desiretramples=18": {
+      "model": "desire-paths:block/grass_dirt_inter13-18"
+    },
+    "desiretramples=19": {
+      "model": "desire-paths:block/grass_dirt_inter19-25"
+    },
+    "desiretramples=20": {
+      "model": "desire-paths:block/grass_dirt_inter19-25"
+    },
+    "desiretramples=21": {
+      "model": "desire-paths:block/grass_dirt_inter19-25"
+    },
+    "desiretramples=22": {
+      "model": "desire-paths:block/grass_dirt_inter19-25"
+    },
+    "desiretramples=23": {
+      "model": "desire-paths:block/grass_dirt_inter19-25"
+    },
+    "desiretramples=24": {
+      "model": "desire-paths:block/grass_dirt_inter19-25"
+    },
+    "desiretramples=25": {
+      "model": "desire-paths:block/grass_dirt_inter19-25"
+    }
   }
 }

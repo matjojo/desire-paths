@@ -18,6 +18,10 @@ package com.matjojo.desire_paths.data.Blocks;
 import com.matjojo.desire_paths.data.DesirePathsDataHolder;
 import net.minecraft.block.*;
 import net.minecraft.state.StateFactory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class Trampleable extends GrassBlock implements Fertilizable {
     public Trampleable(Settings block$Settings_1) {
@@ -29,4 +33,13 @@ public class Trampleable extends GrassBlock implements Fertilizable {
         super.appendProperties(stateFactory$Builder_1);
         stateFactory$Builder_1.add(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
     }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onRandomTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
+        DesirePathsDataHolder.triggerUnTrample(blockState_1, world_1, blockPos_1);
+    }
+
+
+
 }
