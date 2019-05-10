@@ -4,9 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "OnPlantBlockCanPlantOnTopMixin",
-    "OnIncreaseStatMixin"
+    "OnPlayerAddStatisticsMixin"
   ],
-  "client": [
+  "client":[
   ],
   "injectors": {
     "defaultRequire": 1

@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 
 public class DesirePathsDataHolder {
     public static final IntegerProperty DESIRE_PATH_PROPERTY;
-    public static final int speedThreshold;
+    private static final int speedThreshold;
     private static final int MAX_TRAMPLE;
     private static final int UNTRAMPLE_PER_RANDOM_TICK;
 
@@ -67,6 +67,15 @@ public class DesirePathsDataHolder {
 
     private static boolean isBlockToTrample(BlockState toCheck) {
         return toCheck.getProperties().contains(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
+    }
+
+    public static boolean playerIsTrampling(PlayerEntity player, int distance) {
+        return distance > DesirePathsDataHolder.speedThreshold &&
+                player.abilities.allowModifyWorld &&
+                !player.hasVehicle() &&
+                player.onGround &&
+                !player.isSneaking() &&
+                !player.isInsideWater();
     }
 
     public static void triggerTrample(PlayerEntity player) {
