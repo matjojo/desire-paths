@@ -38,7 +38,7 @@ public class DesirePathsDataHolder {
         speedThreshold = 20; // Player moves 6, 22, 28 when crouching, walking, running.
         MAX_TRAMPLE = 5 * 5; // the amount of ticks that you'd have to walk on this block
         // since you take, when walking, 100/22 = 4.5 ticks per block,
-        // we'd want you to walk over the block about 5 times before getting a desire path
+        // we'd want you to walk over the block about 5 times before going to the next stage
         DESIRE_PATH_PROPERTY = IntegerProperty.create("desiretramples", 0, DesirePathsDataHolder.MAX_TRAMPLE);
         UNTRAMPLE_PER_RANDOM_TICK = 5;
     }
@@ -108,6 +108,8 @@ public class DesirePathsDataHolder {
             return Blocks.MYCELIUM;
         } else if (block.equals(DesirePathInitializer.PODZOL_DIRT_INTER)) {
             return Blocks.PODZOL;
+        } else if (block.equals(Blocks.DIRT)) {
+            return Blocks.DIRT;
         }
 
         MinecraftServer server = world.getServer();
