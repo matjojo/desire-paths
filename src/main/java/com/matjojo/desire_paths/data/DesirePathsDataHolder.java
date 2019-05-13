@@ -40,7 +40,7 @@ public class DesirePathsDataHolder {
         // since you take, when walking, 100/22 = 4.5 ticks per block,
         // we'd want you to walk over the block about 5 times before going to the next stage
         DESIRE_PATH_PROPERTY = IntegerProperty.create("desiretramples", 0, DesirePathsDataHolder.MAX_TRAMPLE);
-        UNTRAMPLE_PER_RANDOM_TICK = 5;
+        UNTRAMPLE_PER_RANDOM_TICK = 2;
     }
 
     private static Block getNextBlock(Block currentBlock) {
