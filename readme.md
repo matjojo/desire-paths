@@ -19,5 +19,6 @@ Have you even needed to make path blocks on the walk from your base to the mine?
 - Multiplayer:  You'll want to add both the jars to the server and client.
 
 # Future
-- gradual conversion from block to path
-- Support for more entities
+- Better 'path' block, now using coarse dirt.
+- Support for more grasses.
+- More varied textures
