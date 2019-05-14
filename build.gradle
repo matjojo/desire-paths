@@ -21,6 +21,10 @@ dependencies {
 
 	// Fabric API.
 	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305
+	compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+
 }
 
 processResources {
