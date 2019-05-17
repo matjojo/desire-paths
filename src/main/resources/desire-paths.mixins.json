@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "OnPlantBlockCanPlantOnTopMixin",
-    "OnPlayerAddStatisticsMixin"
+    "OnPlayerAddStatisticsMixin",
+    "DesirePathsOnSugarCaneCanPlantOnTopOfMixinW"
+
   ],
   "client":[
   ],
