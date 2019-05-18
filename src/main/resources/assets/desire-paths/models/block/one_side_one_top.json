@@ -6,7 +6,7 @@
       "to": [ 16, 16, 16 ],
       "faces": {
         "down": {
-          "texture": "#side",
+          "texture": "#bottom",
           "cullface": "down"
         },
         "up": {

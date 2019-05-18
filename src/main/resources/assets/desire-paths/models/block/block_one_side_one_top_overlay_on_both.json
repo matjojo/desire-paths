@@ -14,7 +14,7 @@
       ],
       "faces": {
         "down": {
-          "texture": "#side",
+          "texture": "#bottom",
           "cullface": "down"
         },
         "up": {
