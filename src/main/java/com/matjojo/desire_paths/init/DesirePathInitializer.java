@@ -33,6 +33,7 @@ public class DesirePathInitializer implements ModInitializer {
     @Override
     public void onInitialize()
     {
+        // register blocks
         Registry.register(Registry.BLOCK, new Identifier("desire-paths", "dirt_coarse_inter"), DIRT_COARSE_INTER);
         Registry.register(Registry.BLOCK, new Identifier("desire-paths", "grass_dirt_inter"), GRASS_DIRT_INTER);
         Registry.register(Registry.BLOCK, new Identifier("desire-paths", "podzol_dirt_inter"), PODZOL_DIRT_INTER);
