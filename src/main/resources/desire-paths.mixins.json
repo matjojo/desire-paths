@@ -6,7 +6,8 @@
     "OnPlantBlockCanPlantOnTopMixin",
     "OnPlayerAddStatisticsMixin",
     "DesirePathsOnSugarCaneCanPlantOnTopOfMixin",
-    "DesirePathEatGrassGoalMixin"
+    "DesirePathEatGrassGoalMixin",
+    "DesirePathHoeItemMixin"
 
   ],
   "client":[
