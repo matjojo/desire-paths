@@ -1,30 +1,85 @@
 {
   "variants": {
-    "desiretramples=0":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=1":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=2":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=3":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=4":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=5":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=6":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=7":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=8":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=9":  {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=10": {"model":  "desire-paths:block/podzol_dirt_inter0-10"},
-    "desiretramples=11": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=12": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=13": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=14": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=15": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=16": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=17": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=18": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=19": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=20": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=21": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=22": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=23": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=24": {"model":  "desire-paths:block/podzol_dirt_inter11-25"},
-    "desiretramples=25": {"model":  "desire-paths:block/podzol_dirt_inter11-25"}
+    "snowy=true": {
+      "model": "block/grass_block_snow"
+    },
+    "desiretramples=0,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=1,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=2,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=3,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=4,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=5,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=6,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=7,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=8,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=9,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=10,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter0-10"
+    },
+    "desiretramples=11,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=12,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=13,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=14,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=15,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=16,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=17,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=18,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=19,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=20,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=21,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=22,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=23,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=24,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    },
+    "desiretramples=25,snowy=false": {
+      "model": "desire-paths:block/podzol_dirt_inter11-25"
+    }
   }
 }
