@@ -17,8 +17,10 @@ package com.matjojo.desire_paths.data.Blocks;
 
 import com.matjojo.desire_paths.data.DesirePathsDataHolder;
 import net.minecraft.block.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateFactory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -40,6 +42,9 @@ public class Trampleable extends GrassBlock implements Fertilizable {
         DesirePathsDataHolder.triggerUnTrample(blockState_1, world_1, blockPos_1);
     }
 
-
-
+    @Override
+    public ItemStack getPickStack(BlockView blockView_1, BlockPos blockPos_1, BlockState blockState_1) {
+        return new ItemStack(Blocks.DIRT);
+    }
+    
 }
