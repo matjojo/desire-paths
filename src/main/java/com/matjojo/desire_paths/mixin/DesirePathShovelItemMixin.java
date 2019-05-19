@@ -16,44 +16,45 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(net.minecraft.item.HoeItem.class)
-public abstract class DesirePathHoeItemMixin {
+@SuppressWarnings("Duplicates") // TODO: split into static method
+@Mixin(net.minecraft.item.ShovelItem.class)
+public abstract class DesirePathShovelItemMixin {
 
     /**
      * Relevant byteCode:
      *
-     *      111: invokedynamic #142,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/item/ItemUsageContext;)Ljava/util/function/Consumer;
-     *      116: invokevirtual #148                // Method net/minecraft/item/ItemStack.applyDamage:(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V
-     *      119: getstatic     #154                // Field net/minecraft/util/ActionResult.SUCCESS:Lnet/minecraft/util/ActionResult;
-     *      122: areturn				// Return 0
-     *      123: getstatic     #157                // Field net/minecraft/util/ActionResult.PASS:Lnet/minecraft/util/ActionResult;
-     *      126: areturn				// Return 1
+     *   111: invokedynamic #154,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/item/ItemUsageContext;)Ljava/util/function/Consumer;
+     *   116: invokevirtual #160                // Method net/minecraft/item/ItemStack.applyDamage:(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V
+     *   119: getstatic     #166                // Field net/minecraft/util/ActionResult.SUCCESS:Lnet/minecraft/util/ActionResult;
+     *   122: areturn		// Return opcode 0
+     *   123: getstatic     #169                // Field net/minecraft/util/ActionResult.PASS:Lnet/minecraft/util/ActionResult;
+     *   126: areturn		// Return opcode 1
      *
-     * We want to capture the return ActionResult.PASS, if the hoe was used on our block we hoe it.
+     * We want to capture the return ActionResult.PASS, if the shovel was used on our block we make it into a path.
      *
-     * @reason To Make sure the hoe can be used on trampled blocks
+     * @reason To Make sure the shovel can be used to shovel trampled blocks into path
      * @author Matjojo
      */
-    @SuppressWarnings("Duplicates") // TODO: split into static method
+
     @Inject(at = @At(value = "RETURN", ordinal = 1), method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;",cancellable = true)
-    private void DesirePathHoeItemHoeTrampledBlocksMixin(ItemUsageContext usageContext, CallbackInfoReturnable<ActionResult> cir) {
+    private void DesirePathShovelItemUseOnBlockMixin(ItemUsageContext usageContext, CallbackInfoReturnable<ActionResult> cir) {
         // We get here from the pass return, so we need to check for the validity again.
         World world = usageContext.getWorld();
-        BlockPos blockPosOfToHoeBlock = usageContext.getBlockPos();
+        BlockPos blockPosOfToShovelBlock = usageContext.getBlockPos();
 
-        if (!(usageContext.getFacing() != Direction.DOWN && world.getBlockState(blockPosOfToHoeBlock.up()).isAir())) {
+        if (!(usageContext.getFacing() != Direction.DOWN && world.getBlockState(blockPosOfToShovelBlock.up()).isAir())) {
             return; // if the block is not valid to change we just let it return ActionResult.PASS
         }
 
-        if (! world.getBlockState(blockPosOfToHoeBlock).getProperties().contains(DesirePathsDataHolder.DESIRE_PATH_PROPERTY)) {
+        if (! world.getBlockState(blockPosOfToShovelBlock).getProperties().contains(DesirePathsDataHolder.DESIRE_PATH_PROPERTY)) {
             return; // if this is not one of our blocks we just let it return ActionResult.PASS
         }
 
-        BlockState farmLand = Blocks.FARMLAND.getDefaultState();
+        BlockState pathState = Blocks.GRASS_PATH.getDefaultState();
         PlayerEntity player = usageContext.getPlayer();
-        world.playSound(player, blockPosOfToHoeBlock, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        world.playSound(player, blockPosOfToShovelBlock, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
         if (!world.isClient) {
-            world.setBlockState(blockPosOfToHoeBlock, farmLand, 11);
+            world.setBlockState(blockPosOfToShovelBlock, pathState, 11);
             if (player != null) {
                 usageContext.getItemStack().applyDamage(1,
                         player,

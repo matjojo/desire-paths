@@ -7,7 +7,8 @@
     "OnPlayerAddStatisticsMixin",
     "DesirePathsOnSugarCaneCanPlantOnTopOfMixin",
     "DesirePathEatGrassGoalMixin",
-    "DesirePathHoeItemMixin"
+    "DesirePathHoeItemMixin",
+    "DesirePathShovelItemMixin"
 
   ],
   "client":[
