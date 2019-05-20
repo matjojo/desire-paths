@@ -3,7 +3,7 @@
 A desire path is a path created as a consequence of erosion caused by human or animal foot-fall traffic. The path usually represents the shortest or most easily navigated route between an origin and destination.
 ___
 
-Have you even needed to make path blocks on the walk from your base to the mine? Have you ever thought, in real live this is automatic? Than this is the mod for you. Walk over a Grass, Dirt, Podzol or Mycelium block often enough and you'll trample it into a path block automatically!
+Have you even needed to make path blocks on the walk from your base to the mine? Have you ever thought, in real live this is automatic? Than this is the mod for you. Walk over a Grass, Dirt, Podzol or Mycelium block often enough and you'll trample it into a path automatically!
 
 ![Like this!](https://i.imgur.com/iPEcfkI.jpg)
 
@@ -20,5 +20,4 @@ Have you even needed to make path blocks on the walk from your base to the mine?
 
 # Future
 - Better 'path' block, now using coarse dirt.
-- Support for more grasses.
 - More varied textures
