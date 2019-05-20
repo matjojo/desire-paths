@@ -66,19 +66,19 @@ publishing {
 	}
 }
 
-// https://github.com/NerdHubMC/Gradle-Scripts/blob/master/scripts/fabric/dependencies/1.14.1/development_suite.gradle#L67
-ext {
-	// Here's what you're looking at (HWYLA)
-	hwyla_version = "1.14-1.9.16-60"
-}
+//// https://github.com/NerdHubMC/Gradle-Scripts/blob/master/scripts/fabric/dependencies/1.14.1/development_suite.gradle#L67
+//ext {
+//	// Here's what you're looking at (HWYLA)
+//	hwyla_version = "1.14-1.9.16-60"
+//}
 
 // declare all the needed repositories
-repositories {
-	maven {
-		name = "TehNut"
-		url = "https://tehnut.info/maven"
-	}
-}
+//repositories { // not working since still on API 2.7
+//	maven {
+//		name = "TehNut"
+//		url = "https://tehnut.info/maven"
+//	}
+//}
 
 // declare the actual dependencies
 dependencies {
@@ -93,6 +93,8 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305
 	compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-	// TehNut
-	modCompile("mcp.mobius.waila:Hwyla:${project.ext.hwyla_version}")
+
+	// modCompile HWYLA and Modmenu
+	modCompile fileTree(dir: "lib", includes: ['*.jar'], excludes: ['*-sources.jar'])
+
 }
