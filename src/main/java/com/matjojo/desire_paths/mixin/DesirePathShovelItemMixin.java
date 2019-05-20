@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@SuppressWarnings("Duplicates") // TODO: split into static method
+@SuppressWarnings("Duplicates")
 @Mixin(net.minecraft.item.ShovelItem.class)
 public abstract class DesirePathShovelItemMixin {
 

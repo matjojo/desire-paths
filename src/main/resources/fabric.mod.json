@@ -35,6 +35,10 @@
     "fabric": "*"
   },
   "custom": {
-    "modmenu:clientsideOnly": false
+    "modmenu:clientsideOnly": false,
+    "waila:plugins": {
+      "id": "desire-paths:waila_support",
+      "initializer": "com.matjojo.desire_paths.wailaSupport.WailaPlugin"
+    }
   }
 }

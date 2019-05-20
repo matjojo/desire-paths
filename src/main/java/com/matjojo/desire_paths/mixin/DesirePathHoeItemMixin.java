@@ -28,7 +28,7 @@ public abstract class DesirePathHoeItemMixin {
      * @reason To Make sure the hoe can be used on trampled blocks
      * @author Matjojo
      */
-    @SuppressWarnings("Duplicates") // TODO: split into static method
+    @SuppressWarnings("Duplicates")
     @Inject(at = @At(value = "RETURN", ordinal = 1), method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;",cancellable = true)
     private void DesirePathHoeItemHoeTrampledBlocksMixin(ItemUsageContext usageContext, CallbackInfoReturnable<ActionResult> cir) {
         // We get here from the pass return, so we need to check for the validity again.

@@ -13,20 +13,6 @@ group = project.maven_group
 minecraft {
 }
 
-dependencies {
-	//to change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
-	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API.
-	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	// https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305
-	compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-
-}
-
 processResources {
 	inputs.property "version", project.version
 
@@ -78,4 +64,35 @@ publishing {
 		// uncomment to publish to the local maven
 		// mavenLocal()
 	}
+}
+
+// https://github.com/NerdHubMC/Gradle-Scripts/blob/master/scripts/fabric/dependencies/1.14.1/development_suite.gradle#L67
+ext {
+	// Here's what you're looking at (HWYLA)
+	hwyla_version = "1.14-1.9.16-60"
+}
+
+// declare all the needed repositories
+repositories {
+	maven {
+		name = "TehNut"
+		url = "https://tehnut.info/maven"
+	}
+}
+
+// declare the actual dependencies
+dependencies {
+
+	//to change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
+	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API.
+	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305
+	compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+	// TehNut
+	modCompile("mcp.mobius.waila:Hwyla:${project.ext.hwyla_version}")
 }
