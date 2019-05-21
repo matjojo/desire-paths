@@ -2,8 +2,15 @@ package com.matjojo.desire_paths.core;
 
 import com.matjojo.desire_paths.init.DesirePathInitializer;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.ViewableWorld;
 
 public class Util {
 
@@ -35,4 +42,18 @@ public class Util {
         }
         return blockName;
     }
+
+    public static boolean blockIsNextToValidWater(ViewableWorld world, BlockPos position) {
+
+        for (Direction offset : Direction.Type.HORIZONTAL) {
+            BlockState blockNextTo = world.getBlockState(position.offset(offset));
+            FluidState fluidNextTo = world.getFluidState(position.offset(offset));
+            if (fluidNextTo.matches(FluidTags.WATER) || blockNextTo.getBlock() == Blocks.FROSTED_ICE) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
