@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.state.property.IntegerProperty;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
@@ -17,8 +18,21 @@ import net.minecraft.world.ViewableWorld;
 public class Util {
     public static final IntegerProperty DESIRE_PATH_PROPERTY;
 
+    public static final TranslatableComponent DESIRE_PATHS_MOD_NAME;
+    private static final TranslatableComponent GRASS_DIRT_INTER_TRANSLATED_NAME;
+    private static final TranslatableComponent MYCELIUM_DIRT_INTER_TRANSLATED_NAME;
+    private static final TranslatableComponent PODZOL_DIRT_INTER_TRANSLATED_NAME;
+    private static final TranslatableComponent DIRT_COARSE_INTER_TRANSLATED_NAME;
+
     static {
         DESIRE_PATH_PROPERTY = IntegerProperty.create("desiretramples", 0, TrampleUtil.MAX_TRAMPLE);
+
+        GRASS_DIRT_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.grass_dirt_inter");
+        MYCELIUM_DIRT_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.mycelium_dirt_inter");
+        PODZOL_DIRT_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.podzol_dirt_inter");
+        DIRT_COARSE_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.dirt_coarse_inter");
+
+        DESIRE_PATHS_MOD_NAME = new TranslatableComponent("desirepaths.hwylamodname");
     }
 
     public static ItemStack getItemStackForTrampleableBlock(Block block) {
@@ -37,15 +51,15 @@ public class Util {
     }
 
     public static String getBlockNameStringForTrampleableBlock(Block block) {
-        String blockName = "Trampleable";
+        String blockName = "Missing Key";
         if (block.equals(DesirePathBlocks.GRASS_DIRT_INTER)) {
-            blockName = "Grass";
+            blockName = Util.GRASS_DIRT_INTER_TRANSLATED_NAME.getText();
         } else if (block.equals(DesirePathBlocks.DIRT_COARSE_INTER)) {
-            blockName = "Dirt";
+            blockName = Util.DIRT_COARSE_INTER_TRANSLATED_NAME.getText();
         } else if (block.equals(DesirePathBlocks.PODZOL_DIRT_INTER)) {
-            blockName = "Podzol";
+            blockName = Util.PODZOL_DIRT_INTER_TRANSLATED_NAME.getText();
         } else if (block.equals(DesirePathBlocks.MYCELIUM_DIRT_INTER)) {
-            blockName = "Mycelium";
+            blockName = Util.MYCELIUM_DIRT_INTER_TRANSLATED_NAME.getText();
         }
         return blockName;
     }

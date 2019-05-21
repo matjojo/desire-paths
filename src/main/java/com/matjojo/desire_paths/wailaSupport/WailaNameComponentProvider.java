@@ -1,5 +1,6 @@
 package com.matjojo.desire_paths.wailaSupport;
 
+import com.matjojo.desire_paths.core.Util;
 import mcp.mobius.waila.Waila;
 import mcp.mobius.waila.api.IComponentProvider;
 import mcp.mobius.waila.api.IDataAccessor;
@@ -33,7 +34,7 @@ public class WailaNameComponentProvider implements IComponentProvider {
     @Override
     public void appendTail(List<Component> tooltip, IDataAccessor accessor, IPluginConfig config) {
 
-        String modNameFormatted = String.format(Waila.CONFIG.get().getFormatting().getModName(), "DesirePaths");
+        String modNameFormatted = String.format(Waila.CONFIG.get().getFormatting().getModName(), Util.DESIRE_PATHS_MOD_NAME.getText());
 
         ((ITaggableList<Identifier, Component>) tooltip).setTag(MOD_NAME_TAG, new TextComponent(modNameFormatted));
     }
