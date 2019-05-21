@@ -15,28 +15,14 @@
 
 package com.matjojo.desire_paths.init;
 
-import com.matjojo.desire_paths.data.Blocks.Trampleable;
+import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class DesirePathInitializer implements ModInitializer {
 
-    public static final Block DIRT_COARSE_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().dropsLike(Blocks.DIRT).build());
-    public static final Block GRASS_DIRT_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().dropsLike(Blocks.GRASS_BLOCK).build());
-    public static final Block PODZOL_DIRT_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().dropsLike(Blocks.PODZOL).build());
-    public static final Block MYCELIUM_DIRT_INTER = new Trampleable(FabricBlockSettings.copy(Blocks.DIRT).ticksRandomly().dropsLike(Blocks.MYCELIUM).build());
-
     @Override
-    public void onInitialize()
-    {
+    public void onInitialize() {
         // register blocks
-        Registry.register(Registry.BLOCK, new Identifier("desire-paths", "dirt_coarse_inter"), DIRT_COARSE_INTER);
-        Registry.register(Registry.BLOCK, new Identifier("desire-paths", "grass_dirt_inter"), GRASS_DIRT_INTER);
-        Registry.register(Registry.BLOCK, new Identifier("desire-paths", "podzol_dirt_inter"), PODZOL_DIRT_INTER);
-        Registry.register(Registry.BLOCK, new Identifier("desire-paths", "mycelium_dirt_inter"), MYCELIUM_DIRT_INTER);
+        DesirePathBlocks.registerBlocks();
     }
 }

@@ -16,6 +16,7 @@
 
 package com.matjojo.desire_paths.init;
 
+import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
 import net.minecraft.block.Blocks;
@@ -27,6 +28,6 @@ public class DesirePathClientInitializer implements ClientModInitializer {
         ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
             BlockColorProvider provider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
             return provider == null ? -1 : provider.getColor(block, pos, world, layer);
-        }, DesirePathInitializer.GRASS_DIRT_INTER);
+        }, DesirePathBlocks.GRASS_DIRT_INTER);
     }
 }

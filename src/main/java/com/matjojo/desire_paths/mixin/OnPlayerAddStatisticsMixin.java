@@ -15,7 +15,7 @@
 //
 package com.matjojo.desire_paths.mixin;
 
-import com.matjojo.desire_paths.data.DesirePathsDataHolder;
+import com.matjojo.desire_paths.core.TrampleUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.chat.TextComponent;
@@ -45,13 +45,13 @@ public abstract class OnPlayerAddStatisticsMixin {
             return;
         }
 
-        if (!DesirePathsDataHolder.playerIsTrampling(
+        if (!TrampleUtil.playerIsTrampling(
                 player,
                 Math.round(MathHelper.sqrt(double_1 * double_1 + double_2 * double_2 + double_3 * double_3) * 100.0F))
         ) {
             return;
         }
 
-        DesirePathsDataHolder.triggerTrample(player);
+        TrampleUtil.triggerTrample(player);
     }
 }

@@ -15,21 +15,21 @@ public abstract class DesirePathHoeItemMixin {
 
     /**
      * Relevant byteCode:
-     *
-     *      111: invokedynamic #142,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/item/ItemUsageContext;)Ljava/util/function/Consumer;
-     *      116: invokevirtual #148                // Method net/minecraft/item/ItemStack.applyDamage:(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V
-     *      119: getstatic     #154                // Field net/minecraft/util/ActionResult.SUCCESS:Lnet/minecraft/util/ActionResult;
-     *      122: areturn				// Return 0
-     *      123: getstatic     #157                // Field net/minecraft/util/ActionResult.PASS:Lnet/minecraft/util/ActionResult;
-     *      126: areturn				// Return 1
-     *
+     * <p>
+     * 111: invokedynamic #142,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/item/ItemUsageContext;)Ljava/util/function/Consumer;
+     * 116: invokevirtual #148                // Method net/minecraft/item/ItemStack.applyDamage:(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V
+     * 119: getstatic     #154                // Field net/minecraft/util/ActionResult.SUCCESS:Lnet/minecraft/util/ActionResult;
+     * 122: areturn				// Return 0
+     * 123: getstatic     #157                // Field net/minecraft/util/ActionResult.PASS:Lnet/minecraft/util/ActionResult;
+     * 126: areturn				// Return 1
+     * <p>
      * We want to capture the return ActionResult.PASS, if the hoe was used on our block we hoe it.
      *
      * @reason To Make sure the hoe can be used on trampled blocks
      * @author Matjojo
      */
     @SuppressWarnings("Duplicates")
-    @Inject(at = @At(value = "RETURN", ordinal = 1), method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;",cancellable = true)
+    @Inject(at = @At(value = "RETURN", ordinal = 1), method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;", cancellable = true)
     private void DesirePathHoeItemHoeTrampledBlocksMixin(ItemUsageContext usageContext, CallbackInfoReturnable<ActionResult> cir) {
         // We get here from the pass return, so we need to check for the validity again.
         if (BlockIntoFarmLandOrPath.dontAllowItemUsageContextForShovelOrHoe(usageContext)) {

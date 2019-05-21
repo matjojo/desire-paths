@@ -15,7 +15,8 @@
 
 package com.matjojo.desire_paths.data.Blocks;
 
-import com.matjojo.desire_paths.data.DesirePathsDataHolder;
+import com.matjojo.desire_paths.core.TrampleUtil;
+import com.matjojo.desire_paths.core.Util;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateFactory;
@@ -26,25 +27,25 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class Trampleable extends GrassBlock implements Fertilizable {
-    public Trampleable(Settings block$Settings_1) {
+    Trampleable(Settings block$Settings_1) {
         super(block$Settings_1.dropsLike(Blocks.DIRT));
     }
 
     @Override
     protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory$Builder_1) {
         super.appendProperties(stateFactory$Builder_1);
-        stateFactory$Builder_1.add(DesirePathsDataHolder.DESIRE_PATH_PROPERTY);
+        stateFactory$Builder_1.add(Util.DESIRE_PATH_PROPERTY);
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public void onRandomTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
-        DesirePathsDataHolder.triggerUnTrample(blockState_1, world_1, blockPos_1);
+        TrampleUtil.triggerUnTrample(blockState_1, world_1, blockPos_1);
     }
 
     @Override
     public ItemStack getPickStack(BlockView blockView_1, BlockPos blockPos_1, BlockState blockState_1) {
         return new ItemStack(Blocks.DIRT);
     }
-    
+
 }

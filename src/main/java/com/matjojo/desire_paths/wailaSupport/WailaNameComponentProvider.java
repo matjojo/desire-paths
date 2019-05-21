@@ -17,9 +17,9 @@ import static com.matjojo.desire_paths.core.Util.getItemStackForTrampleableBlock
 
 public class WailaNameComponentProvider implements IComponentProvider {
 
-    static IComponentProvider INSTANCE = new WailaNameComponentProvider();
     private static final Identifier MOD_NAME_TAG = new Identifier(Waila.MODID, "mod_name");
     private static final Identifier OBJECT_NAME_TAG = new Identifier(Waila.MODID, "object_name");
+    static IComponentProvider INSTANCE = new WailaNameComponentProvider();
 
     @Override
     public void appendHead(List<Component> tooltip, IDataAccessor accessor, IPluginConfig config) {
