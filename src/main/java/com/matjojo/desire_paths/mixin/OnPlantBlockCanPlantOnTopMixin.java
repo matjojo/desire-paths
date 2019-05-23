@@ -15,7 +15,7 @@
 
 package com.matjojo.desire_paths.mixin;
 
-import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
+import com.matjojo.desire_paths.core.Util;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -29,7 +29,7 @@ public abstract class OnPlantBlockCanPlantOnTopMixin {
 
     @Inject(at = @At("HEAD"), method = "canPlantOnTop(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z", cancellable = true)
     private void desirePathsCanPlantOnTopMixin(BlockState blockState, BlockView blockView, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
-        if (blockState.getBlock().equals(DesirePathBlocks.GRASS_DIRT_INTER)) {
+        if (blockState.getProperties().contains(Util.DESIRE_PATH_PROPERTY)) {
             cir.setReturnValue(true);
         }
     }
