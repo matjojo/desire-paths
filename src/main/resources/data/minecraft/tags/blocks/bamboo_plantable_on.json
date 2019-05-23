@@ -4,6 +4,13 @@
     "desire-paths:grass_dirt_inter",
     "desire-paths:mycelium_dirt_inter",
     "desire-paths:podzol_dirt_inter",
-    "desire-paths:dirt_coarse_inter"
+    "desire-paths:dirt_coarse_inter",
+
+
+    "minecraft:bamboo",
+    "minecraft:bamboo_sapling",
+    "minecraft:gravel",
+    "#minecraft:sand",
+    "#minecraft:dirt_like"
   ]
 }

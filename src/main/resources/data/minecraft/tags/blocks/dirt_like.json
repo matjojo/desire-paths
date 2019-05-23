@@ -4,6 +4,13 @@
     "desire-paths:grass_dirt_inter",
     "desire-paths:mycelium_dirt_inter",
     "desire-paths:podzol_dirt_inter",
-    "desire-paths:dirt_coarse_inter"
+    "desire-paths:dirt_coarse_inter",
+
+
+    "minecraft:dirt",
+    "minecraft:grass_block",
+    "minecraft:podzol",
+    "minecraft:coarse_dirt",
+    "minecraft:mycelium"
   ]
 }
