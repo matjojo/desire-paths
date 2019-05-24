@@ -1,5 +1,6 @@
 package com.matjojo.desire_paths.core;
 
+import com.matjojo.desire_paths.config.DesirePathConfig;
 import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,20 +14,20 @@ import net.minecraft.world.World;
 
 public class TrampleUtil {
 
-
     static final int MAX_TRAMPLE;
-    private static final int speedThreshold;
-    private static final int UNTRAMPLE_PER_RANDOM_TICK;
+    private static final int DISTANCE_MINIMUM;
+    private static final int UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK;
 
     static {
-        speedThreshold = 20; // Player moves 6, 22, 28 when crouching, walking, running.
-        MAX_TRAMPLE = 5 * 5; // the amount of ticks that you'd have to walk on this block
-        // since you take, when walking, 100/22 = 4.5 ticks per block,
-        // we'd want you to walk over the block about 5 times before going to the next stage
-        UNTRAMPLE_PER_RANDOM_TICK = 2;
+        DISTANCE_MINIMUM = 20; // Player moves 6, 22, 28 when crouching, walking, running.
+        MAX_TRAMPLE = 5; // the amount of states that there are for the blocks
+        UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK = 1;
     }
 
-
+    /**
+     * @param currentBlock The <code>Block</code> that you want the 'next' trampled state of
+     * @return The <code>Block</code> that you want to get the 'next' <code>Block</code> of
+     */
     private static Block getNextBlock(Block currentBlock) {
         if (Blocks.DIRT.equals(currentBlock)) {
             return DesirePathBlocks.DIRT_COARSE_INTER;
@@ -42,19 +43,30 @@ public class TrampleUtil {
         return Blocks.DIRT;
     }
 
+    /**
+     * Checks whether or not the given <code>BlockState</code> needs to be changed into an intermediate or not
+     *
+     * @param toCheck The <code>BlockState</code> that you want to know for
+     * @return A <code>boolean</code> that says if this block is one to change into an intermediate block
+     */
     private static boolean isBlockToChange(BlockState toCheck) {
-        return toCheck.getBlock().equals(Blocks.DIRT) ||
-                toCheck.getBlock().equals(Blocks.GRASS_BLOCK) ||
-                toCheck.getBlock().equals(Blocks.PODZOL) ||
-                toCheck.getBlock().equals(Blocks.MYCELIUM);
+        Block toCheckBlock = toCheck.getBlock();
+        return  toCheckBlock.equals(Blocks.DIRT) ||
+                toCheckBlock.equals(Blocks.GRASS_BLOCK) ||
+                toCheckBlock.equals(Blocks.PODZOL) ||
+                toCheckBlock.equals(Blocks.MYCELIUM);
     }
 
+    /**
+     * @param toCheck <code>BlockState</code> that you might want to trample
+     * @return <code>boolean</code>, true if block contains the trample property, and thus can be trampled
+     */
     private static boolean isBlockToTrample(BlockState toCheck) {
         return toCheck.getProperties().contains(Util.DESIRE_PATH_PROPERTY);
     }
 
     public static boolean playerIsTrampling(PlayerEntity player, int distance) {
-        return distance > TrampleUtil.speedThreshold &&
+        return distance > TrampleUtil.DISTANCE_MINIMUM &&
                 player.abilities.allowModifyWorld &&
                 !player.hasVehicle() &&
                 player.onGround &&
@@ -63,24 +75,35 @@ public class TrampleUtil {
     }
 
     public static void triggerTrample(PlayerEntity player) {
-        // search for the block below the player
         BlockPos blockPositionBelowPlayer = new BlockPos(MathHelper.floor(player.x), MathHelper.floor(player.y) - 1, MathHelper.floor(player.z));
         BlockState blockStateBelowPlayer = player.world.getBlockState(blockPositionBelowPlayer);
 
-        if (TrampleUtil.isBlockToTrample(blockStateBelowPlayer)) {
-            int currentTrampleValue = blockStateBelowPlayer.get(Util.DESIRE_PATH_PROPERTY);
-            if (!(currentTrampleValue == TrampleUtil.MAX_TRAMPLE)) {
-                player.world.setBlockState(
-                        blockPositionBelowPlayer,
-                        blockStateBelowPlayer.with(Util.DESIRE_PATH_PROPERTY, currentTrampleValue + 1),
-                        TrampleUtil.MAX_TRAMPLE);
-            } else {// we set the block to the next level
-                player.world.setBlockState(blockPositionBelowPlayer, TrampleUtil.getNextBlock(blockStateBelowPlayer.getBlock()).getDefaultState());
-            }
-        } else if (TrampleUtil.isBlockToChange(blockStateBelowPlayer)) {
-            player.world.setBlockState(blockPositionBelowPlayer, TrampleUtil.getNextBlock(blockStateBelowPlayer.getBlock()).getDefaultState());
-
+        BlockState nextState = TrampleUtil.getNextTrampleableBlockState(blockStateBelowPlayer);
+        if (nextState != null &&
+            player.getRand().nextDouble() < DesirePathConfig.TRAMPLE_CHANCE ) {
+            player.world.setBlockState(blockPositionBelowPlayer, nextState);
         }
+    }
+
+    /**
+     * @param currentState The <code>BlockState</code> that you want the next 'trampled' <code>BlockState</code> for
+     * @return <code>null</code> if the <code>BlockState</code> is not a trampleable, and otherwise the 'next' <code>BlockState</code>
+     */
+    private static BlockState getNextTrampleableBlockState(BlockState currentState) {
+        if (TrampleUtil.isBlockToChange(currentState)) {
+            // if the block is one of the 'base' states
+            return TrampleUtil.getNextBlock(currentState.getBlock()).getDefaultState();
+        } else if (TrampleUtil.isBlockToTrample(currentState)) {
+            int currentTrampleAmount = currentState.get(Util.DESIRE_PATH_PROPERTY);
+            if (currentTrampleAmount == TrampleUtil.MAX_TRAMPLE) {
+                // if the block needs to be changed to the next block
+                return TrampleUtil.getNextBlock(currentState.getBlock()).getDefaultState();
+            } else { // we contain the property but it is not at it's max
+                return currentState.with(Util.DESIRE_PATH_PROPERTY, currentTrampleAmount + 1);
+            }
+        } // This is not a block of ours
+
+        return null;
     }
 
     private static Block getPreviousBlock(Block block, World world) {
@@ -109,8 +132,10 @@ public class TrampleUtil {
     }
 
     public static void triggerUnTrample(BlockState state, World world, BlockPos position) {
-        for (int i = 0; i < TrampleUtil.UNTRAMPLE_PER_RANDOM_TICK; i++) {
-            TrampleUtil.unTrample(state, world, position);
+        for (int i = 0; i < TrampleUtil.UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK; i++) {
+            if (world.random.nextDouble() <= DesirePathConfig.TRAMPLE_CHANCE) {
+                TrampleUtil.unTrample(state, world, position);
+            }
         }
     }
 

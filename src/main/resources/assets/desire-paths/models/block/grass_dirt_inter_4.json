@@ -6,6 +6,6 @@
     "top": "block/dirt",
     "side": "block/grass_block_side",
     "overlay": "block/grass_block_side_overlay",
-    "overlaytop": "desire-paths:block/grass_dirt_inter_top9-12-overlay"
+    "overlaytop": "desire-paths:block/grass_dirt_inter_top_4-overlay"
   }
 }

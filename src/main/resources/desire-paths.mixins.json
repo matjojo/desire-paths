@@ -9,7 +9,6 @@
     "DesirePathEatGrassGoalMixin",
     "DesirePathHoeItemMixin",
     "DesirePathShovelItemMixin"
-
   ],
   "client":[
   ],

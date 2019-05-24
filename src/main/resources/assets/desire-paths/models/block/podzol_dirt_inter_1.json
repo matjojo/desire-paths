@@ -3,7 +3,7 @@
   "textures": {
     "bottom": "block/dirt",
     "particle" : "block/dirt",
-    "top": "desire-paths:block/dirt_coarse_inter_top11-25",
-    "side": "block/dirt"
+    "top": "desire-paths:block/podzol_dirt_inter_top_1",
+    "side": "block/podzol_side"
   }
 }

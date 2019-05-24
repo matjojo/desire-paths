@@ -3,7 +3,7 @@
   "textures": {
     "bottom": "block/dirt",
     "particle" : "block/dirt",
-    "top": "desire-paths:block/mycelium_dirt_inter_top11-25",
+    "top": "desire-paths:block/mycelium_dirt_inter_top_2",
     "side": "block/mycelium_side"
   }
 }

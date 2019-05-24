@@ -30,7 +30,7 @@ public abstract class OnPlayerAddStatisticsMixin {
 
 
     @Inject(method = "method_7282(DDD)V", at = @At("RETURN"))
-    private void onPlayerAddStatisticsMixin(double double_1, double double_2, double double_3, CallbackInfo ci) {
+    private void onPlayerAddStatisticsMixin(double x, double y, double z, CallbackInfo ci) {
         //noinspection ConstantConditions
         Entity self = (Entity) (Object) this; // this is a bit of a hack but this is how it works with mixin.
         PlayerEntity player;
@@ -47,7 +47,7 @@ public abstract class OnPlayerAddStatisticsMixin {
 
         if (!TrampleUtil.playerIsTrampling(
                 player,
-                Math.round(MathHelper.sqrt(double_1 * double_1 + double_2 * double_2 + double_3 * double_3) * 100.0F))
+                Math.round(MathHelper.sqrt(x * x + y * y + z * z) * 100.0F))
         ) {
             return;
         }

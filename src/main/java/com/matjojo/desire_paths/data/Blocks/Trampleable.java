@@ -27,25 +27,25 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class Trampleable extends GrassBlock implements Fertilizable {
-    Trampleable(Settings block$Settings_1) {
-        super(block$Settings_1.dropsLike(Blocks.DIRT));
+    Trampleable(Settings blockSettings) {
+        super(blockSettings.dropsLike(Blocks.DIRT));
     }
 
     @Override
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory$Builder_1) {
-        super.appendProperties(stateFactory$Builder_1);
-        stateFactory$Builder_1.add(Util.DESIRE_PATH_PROPERTY);
+    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory) {
+        super.appendProperties(stateFactory);
+        stateFactory.add(Util.DESIRE_PATH_PROPERTY);
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public void onRandomTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
-        TrampleUtil.triggerUnTrample(blockState_1, world_1, blockPos_1);
+    public void onRandomTick(BlockState state, World world, BlockPos position, Random random) {
+        TrampleUtil.triggerUnTrample(state, world, position);
     }
 
     @Override
-    public ItemStack getPickStack(BlockView blockView_1, BlockPos blockPos_1, BlockState blockState_1) {
-        return new ItemStack(Blocks.DIRT);
+    public ItemStack getPickStack(BlockView view, BlockPos position, BlockState state) {
+        return Util.getItemStackForTrampleableBlock(state.getBlock());
     }
 
 }
