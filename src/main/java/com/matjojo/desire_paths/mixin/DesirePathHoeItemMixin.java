@@ -1,42 +1,30 @@
 package com.matjojo.desire_paths.mixin;
 
-import com.matjojo.desire_paths.core.BlockIntoFarmLandOrPath;
+import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
+import net.minecraft.item.Item;
+import net.minecraft.item.ToolMaterial;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Map;
 
 @Mixin(net.minecraft.item.HoeItem.class)
 public abstract class DesirePathHoeItemMixin {
+    @Shadow @Final protected static Map<Block, BlockState> BLOCK_TRANSFORMATIONS_MAP;
 
-    /**
-     * Relevant byteCode:
-     * <p>
-     * 111: invokedynamic #142,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/item/ItemUsageContext;)Ljava/util/function/Consumer;
-     * 116: invokevirtual #148                // Method net/minecraft/item/ItemStack.applyDamage:(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V
-     * 119: getstatic     #154                // Field net/minecraft/util/ActionResult.SUCCESS:Lnet/minecraft/util/ActionResult;
-     * 122: areturn				// Return 0
-     * 123: getstatic     #157                // Field net/minecraft/util/ActionResult.PASS:Lnet/minecraft/util/ActionResult;
-     * 126: areturn				// Return 1
-     * <p>
-     * We want to capture the return ActionResult.PASS, if the hoe was used on our block we hoe it.
-     *
-     * @reason To Make sure the hoe can be used on trampled blocks
-     * @author Matjojo
-     */
-    @SuppressWarnings("Duplicates")
-    @Inject(at = @At(value = "RETURN", ordinal = 1), method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;", cancellable = true)
-    private void DesirePathHoeItemHoeTrampledBlocksMixin(ItemUsageContext usageContext, CallbackInfoReturnable<ActionResult> cir) {
-        // We get here from the pass return, so we need to check for the validity again.
-        if (BlockIntoFarmLandOrPath.dontAllowItemUsageContextForShovelOrHoe(usageContext)) {
-            return;
+    @Inject(at = @At(value = "RETURN"), method = "<init>(Lnet/minecraft/item/ToolMaterial;FLnet/minecraft/item/Item$Settings;)V")
+    private void DesirePathHoeItemOnConstructorMixin(ToolMaterial toolMaterial_1, float float_1, Item.Settings item$Settings_1, CallbackInfo ci) {
+        for (Block toChange : DesirePathBlocks.getBlocks()) {
+            // we get this via the instance due to access issues that the mixin would solve, but that the IDE does not understand
+            //noinspection AccessStaticViaInstance
+            this.BLOCK_TRANSFORMATIONS_MAP.put(toChange, Blocks.FARMLAND.getDefaultState());
         }
-        // Now we can use a util function to call all the breaking and sound making events
-        BlockIntoFarmLandOrPath.doWorldInteractionForBlockChange(usageContext, SoundEvents.ITEM_HOE_TILL, Blocks.FARMLAND.getDefaultState());
-        cir.setReturnValue(ActionResult.SUCCESS);
     }
 }
