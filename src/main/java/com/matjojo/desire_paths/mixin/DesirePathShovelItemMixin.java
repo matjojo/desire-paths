@@ -1,43 +1,38 @@
 package com.matjojo.desire_paths.mixin;
 
-import com.matjojo.desire_paths.core.BlockIntoFarmLandOrPath;
+import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
+import net.minecraft.item.Item;
+import net.minecraft.item.ToolMaterial;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Map;
+import java.util.Set;
 
 @Mixin(net.minecraft.item.ShovelItem.class)
 public abstract class DesirePathShovelItemMixin {
 
-    /**
-     * Relevant byteCode:
-     * <p>
-     * 111: invokedynamic #154,  0            // InvokeDynamic #0:accept:(Lnet/minecraft/item/ItemUsageContext;)Ljava/util/function/Consumer;
-     * 116: invokevirtual #160                // Method net/minecraft/item/ItemStack.applyDamage:(ILnet/minecraft/entity/LivingEntity;Ljava/util/function/Consumer;)V
-     * 119: getstatic     #166                // Field net/minecraft/util/ActionResult.SUCCESS:Lnet/minecraft/util/ActionResult;
-     * 122: areturn		// Return opcode 0
-     * 123: getstatic     #169                // Field net/minecraft/util/ActionResult.PASS:Lnet/minecraft/util/ActionResult;
-     * 126: areturn		// Return opcode 1
-     * <p>
-     * We want to capture the return ActionResult.PASS, if the shovel was used on our block we make it into a path.
-     *
-     * @reason To Make sure the shovel can be used to shovel trampled blocks into path
-     * @author Matjojo
-     */
+    @Shadow @Final private static Set<Block> EFFECTIVE_BLOCKS;
 
-    @Inject(at = @At(value = "RETURN", ordinal = 1), method = "useOnBlock(Lnet/minecraft/item/ItemUsageContext;)Lnet/minecraft/util/ActionResult;", cancellable = true)
-    private void DesirePathShovelItemUseOnBlockMixin(ItemUsageContext usageContext, CallbackInfoReturnable<ActionResult> cir) {
-        // We get here from the pass return, so we need to check for the validity again.
+    @Shadow @Final protected static Map<Block, BlockState> BLOCK_TRANSFORMATIONS_MAP;
 
-        if (BlockIntoFarmLandOrPath.dontAllowItemUsageContextForShovelOrHoe(usageContext)) {
-            return;
+    @Inject(at = @At(value = "RETURN"), method = "<init>(Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V")
+    private void DesirePathShovelItemOnConstructorMixin(ToolMaterial toolMaterial_1, float float_1, float float_2, Item.Settings item$Settings_1, CallbackInfo ci) {
+        // no inspection since a private static member so unable to use the static access.
+        //noinspection AccessStaticViaInstance
+        this.EFFECTIVE_BLOCKS.addAll(DesirePathBlocks.getBlocks());
+
+        for (Block turning : DesirePathBlocks.getBlocks()) {
+            // no inspection since a private static member so unable to use the static access.
+            //noinspection AccessStaticViaInstance
+            this.BLOCK_TRANSFORMATIONS_MAP.put(turning, Blocks.GRASS_PATH.getDefaultState());
         }
-        // Now we can use a util function to call all the breaking and sound making events
-        BlockIntoFarmLandOrPath.doWorldInteractionForBlockChange(usageContext, SoundEvents.ITEM_SHOVEL_FLATTEN, Blocks.GRASS_PATH.getDefaultState());
-        cir.setReturnValue(ActionResult.SUCCESS);
     }
 }
