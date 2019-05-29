@@ -27,14 +27,19 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class Trampleable extends GrassBlock implements Fertilizable {
+
+    private String blockName;
+
     Trampleable(Settings blockSettings) {
         super(blockSettings.dropsLike(Blocks.DIRT));
     }
 
+    Trampleable(Settings blockSettings, String whatBlock) {
+        this(blockSettings);
+        this.blockName = whatBlock;
+    }
+
     // TODO: we could use an enum and a map to make all those if else trees in util easier.
-        // we could also add a string to make the translation key.
-        // also translation keys are made from the blockID that depend on the name in the registry so we should be able to use that instead of the Waila plugin
-        // remember you don't have to build the translation key yourself, just use Block#getTranslationKey
 
     @Override
     protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory) {

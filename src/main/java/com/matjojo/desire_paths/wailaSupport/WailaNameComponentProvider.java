@@ -13,7 +13,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 
-import static com.matjojo.desire_paths.core.Util.getBlockNameStringForTrampleableBlock;
 import static com.matjojo.desire_paths.core.Util.getItemStackForTrampleableBlock;
 
 public class WailaNameComponentProvider implements IComponentProvider {
@@ -25,10 +24,11 @@ public class WailaNameComponentProvider implements IComponentProvider {
     @Override
     public void appendHead(List<Component> tooltip, IDataAccessor accessor, IPluginConfig config) {
 
-        String blockName = getBlockNameStringForTrampleableBlock(accessor.getBlock());
+        String translatedName = accessor.getBlock().getTextComponent().getFormattedText();
 
-        String blockNameFormatted = String.format(Waila.CONFIG.get().getFormatting().getBlockName(), blockName);
+        String blockNameFormatted = String.format(Waila.CONFIG.get().getFormatting().getBlockName(), translatedName);
         ((ITaggableList<Identifier, Component>) tooltip).setTag(OBJECT_NAME_TAG, new TextComponent(blockNameFormatted));
+        System.out.println(translatedName);
     }
 
     @Override

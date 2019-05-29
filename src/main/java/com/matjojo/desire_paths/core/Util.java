@@ -19,18 +19,9 @@ public class Util {
     public static final IntegerProperty DESIRE_PATH_PROPERTY;
 
     public static final TranslatableComponent DESIRE_PATHS_MOD_NAME;
-    private static final TranslatableComponent GRASS_DIRT_INTER_TRANSLATED_NAME;
-    private static final TranslatableComponent MYCELIUM_DIRT_INTER_TRANSLATED_NAME;
-    private static final TranslatableComponent PODZOL_DIRT_INTER_TRANSLATED_NAME;
-    private static final TranslatableComponent DIRT_COARSE_INTER_TRANSLATED_NAME;
 
     static {
         DESIRE_PATH_PROPERTY = IntegerProperty.create("desiretramples", 0, TrampleUtil.MAX_TRAMPLE);
-
-        GRASS_DIRT_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.grass_dirt_inter");
-        MYCELIUM_DIRT_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.mycelium_dirt_inter");
-        PODZOL_DIRT_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.podzol_dirt_inter");
-        DIRT_COARSE_INTER_TRANSLATED_NAME = new TranslatableComponent("block.desirepaths.dirt_coarse_inter");
 
         DESIRE_PATHS_MOD_NAME = new TranslatableComponent("desirepaths.hwylamodname");
     }
@@ -48,20 +39,6 @@ public class Util {
             returnable = new ItemStack(Items.PODZOL);
         }
         return returnable;
-    }
-
-    public static String getBlockNameStringForTrampleableBlock(Block block) {
-        String blockName = "Missing Key";
-        if (block.equals(DesirePathBlocks.GRASS_DIRT_INTER)) {
-            blockName = Util.GRASS_DIRT_INTER_TRANSLATED_NAME.getText();
-        } else if (block.equals(DesirePathBlocks.DIRT_COARSE_INTER)) {
-            blockName = Util.DIRT_COARSE_INTER_TRANSLATED_NAME.getText();
-        } else if (block.equals(DesirePathBlocks.PODZOL_DIRT_INTER)) {
-            blockName = Util.PODZOL_DIRT_INTER_TRANSLATED_NAME.getText();
-        } else if (block.equals(DesirePathBlocks.MYCELIUM_DIRT_INTER)) {
-            blockName = Util.MYCELIUM_DIRT_INTER_TRANSLATED_NAME.getText();
-        }
-        return blockName;
     }
 
     public static boolean blockIsNextToValidWater(ViewableWorld world, BlockPos position) {

@@ -1,7 +1,7 @@
 {
   "desirepaths.hwylamodname": "DesirePaths",
-  "block.desirepaths.grass_dirt_inter": "Trampled Grass",
-  "block.desirepaths.mycelium_dirt_inter": "Trampled Mycelium",
-  "block.desirepaths.podzol_dirt_inter": "Trampled Podzol",
-  "block.desirepaths.dirt_coarse_inter": "Trampled Dirt"
+  "block.desire-paths.grass_dirt_inter": "Trampled Grass",
+  "block.desire-paths.mycelium_dirt_inter": "Trampled Mycelium",
+  "block.desire-paths.podzol_dirt_inter": "Trampled Podzol",
+  "block.desire-paths.dirt_coarse_inter": "Trampled Dirt"
 }
