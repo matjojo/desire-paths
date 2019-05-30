@@ -20,10 +20,14 @@ import com.google.common.collect.Maps;
 import com.matjojo.desire_paths.core.TrampleUtil;
 import com.matjojo.desire_paths.core.Util;
 import net.minecraft.block.*;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateFactory;
+import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.ViewableWorld;
 import net.minecraft.world.World;
 
 import java.util.Map;
@@ -34,7 +38,7 @@ public class Trampleable extends GrassBlock implements Fertilizable {
     private DesirePathBlock blockType;
     private static Map ItemStackMap;
 
-    Trampleable(Settings blockSettings) {
+    private Trampleable(Settings blockSettings) {
         super(blockSettings.dropsLike(Blocks.DIRT));
     }
 
@@ -72,6 +76,17 @@ public class Trampleable extends GrassBlock implements Fertilizable {
             returnable = new ItemStack(Blocks.DIRT);
         }
         return returnable;
+    }
+
+    public static boolean isNextToValidWater(ViewableWorld world, BlockPos position) {
+        for (Direction offset : Direction.Type.HORIZONTAL) {
+            BlockState blockNextTo = world.getBlockState(position.offset(offset));
+            FluidState fluidNextTo = world.getFluidState(position.offset(offset));
+            if (fluidNextTo.matches(FluidTags.WATER) || blockNextTo.getBlock() == Blocks.FROSTED_ICE) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

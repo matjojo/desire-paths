@@ -2,6 +2,7 @@ package com.matjojo.desire_paths.mixin;
 
 
 import com.matjojo.desire_paths.core.Util;
+import com.matjojo.desire_paths.data.Blocks.Trampleable;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ViewableWorld;
@@ -40,8 +41,8 @@ public abstract class DesirePathsOnSugarCaneCanPlantOnTopOfMixin {
                 .getBlock()
                 .getDefaultState()
                 .getProperties()
-                .contains(Util.DESIRE_PATH_PROPERTY) &&
-                Util.blockIsNextToValidWater(world, intendedPosition.down()) // and after that if the block is next to water
+                .contains(Util.DESIRE_PATH_PROPERTY) && // we check if the block is a trampleable
+                Trampleable.isNextToValidWater(world, intendedPosition.down()) // and after that if the block is next to water
         ) {
             cir.setReturnValue(true);
         }
