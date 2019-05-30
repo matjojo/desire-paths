@@ -11,6 +11,5 @@ public class WailaPlugin implements IWailaPlugin {
     public void register(IRegistrar registrar) {
         registrar.registerComponentProvider(WailaNameComponentProvider.INSTANCE, TooltipPosition.HEAD, Trampleable.class);
         registrar.registerComponentProvider(WailaNameComponentProvider.INSTANCE, TooltipPosition.TAIL, Trampleable.class);
-        registrar.registerStackProvider(WailaNameComponentProvider.INSTANCE, Trampleable.class);
     }
 }

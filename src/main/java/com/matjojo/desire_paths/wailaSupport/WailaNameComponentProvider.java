@@ -6,7 +6,6 @@ import mcp.mobius.waila.api.IComponentProvider;
 import mcp.mobius.waila.api.IDataAccessor;
 import mcp.mobius.waila.api.IPluginConfig;
 import mcp.mobius.waila.api.ITaggableList;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Identifier;
@@ -34,10 +33,5 @@ public class WailaNameComponentProvider implements IComponentProvider {
         String modNameFormatted = String.format(Waila.CONFIG.get().getFormatting().getModName(), Util.DESIRE_PATHS_MOD_NAME.getText());
 
         ((ITaggableList<Identifier, Component>) tooltip).setTag(MOD_NAME_TAG, new TextComponent(modNameFormatted));
-    }
-
-    @Override
-    public ItemStack getStack(IDataAccessor accessor, IPluginConfig config) {
-        return accessor.getBlock().getPickStack(accessor.getWorld(), accessor.getPosition(), accessor.getBlockState());
     }
 }
