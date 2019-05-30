@@ -15,6 +15,8 @@
 
 package com.matjojo.desire_paths.data.Blocks;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.matjojo.desire_paths.core.TrampleUtil;
 import com.matjojo.desire_paths.core.Util;
 import net.minecraft.block.*;
@@ -24,19 +26,29 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.Map;
 import java.util.Random;
 
 public class Trampleable extends GrassBlock implements Fertilizable {
 
-    private String blockName;
+    private DesirePathBlock blockType;
+    private static Map ItemStackMap;
 
     Trampleable(Settings blockSettings) {
         super(blockSettings.dropsLike(Blocks.DIRT));
     }
 
-    Trampleable(Settings blockSettings, String whatBlock) {
+    Trampleable(Settings blockSettings, DesirePathBlock whatBlock) {
         this(blockSettings);
-        this.blockName = whatBlock;
+        this.blockType = whatBlock;
+    }
+
+    static {
+        ItemStackMap = Maps.newHashMap(ImmutableMap.of(DesirePathBlock.DIRT_COARSE_INTER, new ItemStack(Blocks.DIRT),
+                DesirePathBlock.GRASS_DIRT_INTER, new ItemStack(Blocks.GRASS_BLOCK),
+                DesirePathBlock.MYCELIUM_DIRT_INTER, new ItemStack(Blocks.MYCELIUM),
+                DesirePathBlock.PODZOL_DIRT_INTER, new ItemStack(Blocks.PODZOL)
+        ));
     }
 
     // TODO: we could use an enum and a map to make all those if else trees in util easier.
@@ -55,7 +67,11 @@ public class Trampleable extends GrassBlock implements Fertilizable {
 
     @Override
     public ItemStack getPickStack(BlockView view, BlockPos position, BlockState state) {
-        return Util.getItemStackForTrampleableBlock(state.getBlock());
+        ItemStack returnable = (ItemStack) Trampleable.ItemStackMap.get(this.blockType);
+        if (returnable == null) {
+            returnable = new ItemStack(Blocks.DIRT);
+        }
+        return returnable;
     }
 
 }

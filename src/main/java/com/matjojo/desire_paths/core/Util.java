@@ -1,12 +1,8 @@
 package com.matjojo.desire_paths.core;
 
-import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.state.property.IntegerProperty;
 import net.minecraft.tag.FluidTags;
@@ -24,21 +20,6 @@ public class Util {
         DESIRE_PATH_PROPERTY = IntegerProperty.create("desiretramples", 0, TrampleUtil.MAX_TRAMPLE);
 
         DESIRE_PATHS_MOD_NAME = new TranslatableComponent("desirepaths.hwylamodname");
-    }
-
-    public static ItemStack getItemStackForTrampleableBlock(Block block) {
-        ItemStack returnable = new ItemStack(Items.DIRT);
-
-        if (block.equals(DesirePathBlocks.GRASS_DIRT_INTER)) {
-            returnable = new ItemStack(Items.GRASS_BLOCK);
-        } else if (block.equals(DesirePathBlocks.DIRT_COARSE_INTER)) {
-            returnable = new ItemStack(Items.DIRT);
-        } else if (block.equals(DesirePathBlocks.MYCELIUM_DIRT_INTER)) {
-            returnable = new ItemStack(Items.MYCELIUM);
-        } else if (block.equals(DesirePathBlocks.PODZOL_DIRT_INTER)) {
-            returnable = new ItemStack(Items.PODZOL);
-        }
-        return returnable;
     }
 
     public static boolean blockIsNextToValidWater(ViewableWorld world, BlockPos position) {

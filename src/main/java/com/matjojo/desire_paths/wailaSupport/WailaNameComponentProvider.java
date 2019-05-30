@@ -13,8 +13,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.List;
 
-import static com.matjojo.desire_paths.core.Util.getItemStackForTrampleableBlock;
-
 public class WailaNameComponentProvider implements IComponentProvider {
 
     private static final Identifier MOD_NAME_TAG = new Identifier(Waila.MODID, "mod_name");
@@ -28,7 +26,6 @@ public class WailaNameComponentProvider implements IComponentProvider {
 
         String blockNameFormatted = String.format(Waila.CONFIG.get().getFormatting().getBlockName(), translatedName);
         ((ITaggableList<Identifier, Component>) tooltip).setTag(OBJECT_NAME_TAG, new TextComponent(blockNameFormatted));
-        System.out.println(translatedName);
     }
 
     @Override
@@ -41,6 +38,6 @@ public class WailaNameComponentProvider implements IComponentProvider {
 
     @Override
     public ItemStack getStack(IDataAccessor accessor, IPluginConfig config) {
-        return getItemStackForTrampleableBlock(accessor.getBlock());
+        return accessor.getBlock().getPickStack(accessor.getWorld(), accessor.getPosition(), accessor.getBlockState());
     }
 }
