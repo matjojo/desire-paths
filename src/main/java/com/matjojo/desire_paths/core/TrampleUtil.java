@@ -2,12 +2,11 @@ package com.matjojo.desire_paths.core;
 
 import com.matjojo.desire_paths.config.DesirePathConfig;
 import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
+import com.matjojo.desire_paths.data.Blocks.Trampleable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -106,31 +105,6 @@ public class TrampleUtil {
         return null;
     }
 
-    private static Block getPreviousBlock(Block block, World world) {
-        if (block.equals(DesirePathBlocks.GRASS_DIRT_INTER)) {
-            return Blocks.GRASS_BLOCK;
-        } else if (block.equals(DesirePathBlocks.DIRT_COARSE_INTER)) {
-            return Blocks.DIRT;
-        } else if (block.equals(DesirePathBlocks.MYCELIUM_DIRT_INTER)) {
-            return Blocks.MYCELIUM;
-        } else if (block.equals(DesirePathBlocks.PODZOL_DIRT_INTER)) {
-            return Blocks.PODZOL;
-        } else if (block.equals(Blocks.DIRT)) {
-            return Blocks.DIRT;
-        }
-
-        MinecraftServer server = world.getServer();
-
-        if (server != null) {
-            Throwable traceProvider = new Throwable();
-            server.sendMessage(new TextComponent("An error occurred in the DesirePaths mod. Please report this to the mod creator."));
-            server.sendMessage(new TextComponent("Please give this error log to the mod creator, it is also in the log."));
-            server.sendMessage(new TextComponent(traceProvider.getLocalizedMessage()));
-            traceProvider.printStackTrace();
-        }
-        return Blocks.DIRT;
-    }
-
     public static void triggerUnTrample(BlockState state, World world, BlockPos position) {
         for (int i = 0; i < TrampleUtil.UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK; i++) {
             if (world.random.nextDouble() <= DesirePathConfig.TRAMPLE_CHANCE) {
@@ -144,7 +118,7 @@ public class TrampleUtil {
         BlockState newBlockState;
         if (currentTrampleValue == 0) {
             //get previous block make sure to set the trample value to the max
-            Block previousBlock = TrampleUtil.getPreviousBlock(state.getBlock(), world);
+            Block previousBlock = ((Trampleable)state.getBlock()).getPreviousBlock();
 
             if (previousBlock.getDefaultState().getProperties().contains(Util.DESIRE_PATH_PROPERTY)) {
                 newBlockState = previousBlock.getDefaultState().with(

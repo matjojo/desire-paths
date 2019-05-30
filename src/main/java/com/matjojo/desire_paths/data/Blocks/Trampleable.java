@@ -37,6 +37,7 @@ public class Trampleable extends GrassBlock implements Fertilizable {
 
     private DesirePathBlock blockType;
     private static Map ItemStackMap;
+    private static Map PreviousBlockMap;
 
     private Trampleable(Settings blockSettings) {
         super(blockSettings.dropsLike(Blocks.DIRT));
@@ -48,14 +49,30 @@ public class Trampleable extends GrassBlock implements Fertilizable {
     }
 
     static {
-        ItemStackMap = Maps.newHashMap(ImmutableMap.of(DesirePathBlock.DIRT_COARSE_INTER, new ItemStack(Blocks.DIRT),
-                DesirePathBlock.GRASS_DIRT_INTER, new ItemStack(Blocks.GRASS_BLOCK),
-                DesirePathBlock.MYCELIUM_DIRT_INTER, new ItemStack(Blocks.MYCELIUM),
-                DesirePathBlock.PODZOL_DIRT_INTER, new ItemStack(Blocks.PODZOL)
+        ItemStackMap = Maps.newHashMap(ImmutableMap.of(
+                DesirePathBlock.DIRT_COARSE_INTER,      new ItemStack(Blocks.DIRT),
+                DesirePathBlock.GRASS_DIRT_INTER,       new ItemStack(Blocks.GRASS_BLOCK),
+                DesirePathBlock.MYCELIUM_DIRT_INTER,    new ItemStack(Blocks.MYCELIUM),
+                DesirePathBlock.PODZOL_DIRT_INTER,      new ItemStack(Blocks.PODZOL)
+        ));
+
+        PreviousBlockMap = Maps.newHashMap(ImmutableMap.of(
+                DesirePathBlock.DIRT_COARSE_INTER,      Blocks.DIRT,
+                DesirePathBlock.GRASS_DIRT_INTER,       Blocks.GRASS_BLOCK,
+                DesirePathBlock.MYCELIUM_DIRT_INTER,    Blocks.MYCELIUM,
+                DesirePathBlock.PODZOL_DIRT_INTER,      Blocks.PODZOL
         ));
     }
 
     // TODO: we could use an enum and a map to make all those if else trees in util easier.
+
+    public Block getPreviousBlock() {
+        Block returnable = (Block) PreviousBlockMap.get(this.blockType);
+        if (returnable == null) {
+            returnable = Blocks.DIRT;
+        }
+        return returnable;
+    }
 
     @Override
     protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory) {
@@ -88,5 +105,4 @@ public class Trampleable extends GrassBlock implements Fertilizable {
         }
         return false;
     }
-
 }
