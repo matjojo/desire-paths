@@ -1,5 +1,7 @@
 package com.matjojo.desire_paths.core;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.matjojo.desire_paths.config.DesirePathConfig;
 import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
 import com.matjojo.desire_paths.data.Blocks.Trampleable;
@@ -11,16 +13,29 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import java.util.Map;
+
 public class TrampleUtil {
 
     static final int MAX_TRAMPLE;
     private static final int DISTANCE_MINIMUM;
     private static final int UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK;
+    private static final Map NextBlockMap;
 
     static {
         DISTANCE_MINIMUM = 20; // Player moves 6, 22, 28 when crouching, walking, running.
         MAX_TRAMPLE = 5; // the amount of states that there are for the blocks
         UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK = 2;
+        NextBlockMap = Maps.newHashMap(ImmutableMap.builder()
+                .put(DesirePathBlocks.DIRT_COARSE_INTER,        Blocks.COARSE_DIRT)
+                .put(DesirePathBlocks.GRASS_DIRT_INTER,         Blocks.DIRT)
+                .put(DesirePathBlocks.MYCELIUM_DIRT_INTER,      Blocks.DIRT)
+                .put(DesirePathBlocks.PODZOL_DIRT_INTER,        Blocks.DIRT)
+                .put(Blocks.DIRT,                               DesirePathBlocks.DIRT_COARSE_INTER)
+                .put(Blocks.MYCELIUM,                           DesirePathBlocks.MYCELIUM_DIRT_INTER)
+                .put(Blocks.GRASS_BLOCK,                        DesirePathBlocks.GRASS_DIRT_INTER)
+                .put(Blocks.PODZOL,                             DesirePathBlocks.PODZOL_DIRT_INTER)
+                .build());
     }
 
     /**
@@ -28,18 +43,11 @@ public class TrampleUtil {
      * @return The <code>Block</code> that you want to get the 'next' <code>Block</code> of
      */
     private static Block getNextBlock(Block currentBlock) {
-        if (Blocks.DIRT.equals(currentBlock)) {
-            return DesirePathBlocks.DIRT_COARSE_INTER;
-        } else if (DesirePathBlocks.DIRT_COARSE_INTER.equals(currentBlock)) {
-            return Blocks.COARSE_DIRT;
-        } else if (Blocks.GRASS_BLOCK.equals(currentBlock)) {
-            return DesirePathBlocks.GRASS_DIRT_INTER;
-        } else if (Blocks.MYCELIUM.equals(currentBlock)) {
-            return DesirePathBlocks.MYCELIUM_DIRT_INTER;
-        } else if (Blocks.PODZOL.equals(currentBlock)) {
-            return DesirePathBlocks.PODZOL_DIRT_INTER;
-        } // all non dirt_coarse_inter inters turn into dirt
-        return Blocks.DIRT;
+        Block returnable = (Block) NextBlockMap.get(currentBlock);
+        if (returnable == null) {
+            returnable = Blocks.DIRT;
+        }
+        return returnable;
     }
 
     /**
@@ -80,7 +88,7 @@ public class TrampleUtil {
         BlockState nextState = TrampleUtil.getNextTrampleableBlockState(blockStateBelowPlayer);
         if (nextState != null &&
             player.getRand().nextDouble() < DesirePathConfig.TRAMPLE_CHANCE ) {
-            player.world.setBlockState(blockPositionBelowPlayer, nextState);
+                player.world.setBlockState(blockPositionBelowPlayer, nextState);
         }
     }
 
