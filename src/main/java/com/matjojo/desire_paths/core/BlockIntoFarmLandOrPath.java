@@ -16,7 +16,7 @@ public class BlockIntoFarmLandOrPath {
         World world = usageContext.getWorld();
         BlockPos blockPosOfToHoeBlock = usageContext.getBlockPos();
         // do not allow if
-        return usageContext.getFacing() == Direction.DOWN ||                // we are at the bottom of the block
+        return usageContext.getPlayerFacing() == Direction.DOWN ||                // we are at the bottom of the block
                 !world.getBlockState(blockPosOfToHoeBlock.up()).isAir() ||  // the block above is not air
                 !world.getBlockState(blockPosOfToHoeBlock).getProperties().contains(Util.DESIRE_PATH_PROPERTY);
     }                                                                       // or the block is not one of ours
@@ -30,7 +30,7 @@ public class BlockIntoFarmLandOrPath {
         if (!world.isClient) {
             world.setBlockState(blockPosOfToHoeBlock, intendedNewBlock, 11);
             if (player != null) {
-                usageContext.getItemStack().applyDamage(1,
+                usageContext.getStack().damage(1,
                         player,
                         (playerEntity) -> playerEntity.sendToolBreakStatus(usageContext.getHand()));
             }

@@ -21,7 +21,7 @@ public abstract class DesirePathShovelItemMixin {
 
     @Shadow @Final private static Set<Block> EFFECTIVE_BLOCKS;
 
-    @Shadow @Final protected static Map<Block, BlockState> BLOCK_TRANSFORMATIONS_MAP;
+    @Shadow @Final protected static Map<Block, BlockState> PATH_BLOCKSTATES;
 
     @Inject(at = @At(value = "RETURN"), method = "<init>(Lnet/minecraft/item/ToolMaterial;FFLnet/minecraft/item/Item$Settings;)V")
     private void DesirePathShovelItemOnConstructorMixin(ToolMaterial toolMaterial_1, float float_1, float float_2, Item.Settings item$Settings_1, CallbackInfo ci) {
@@ -32,7 +32,7 @@ public abstract class DesirePathShovelItemMixin {
         for (Block turning : DesirePathBlocks.getBlocks()) {
             // no inspection since a private static member so unable to use the static access.
             //noinspection AccessStaticViaInstance
-            this.BLOCK_TRANSFORMATIONS_MAP.put(turning, Blocks.GRASS_PATH.getDefaultState());
+            this.PATH_BLOCKSTATES.put(turning, Blocks.GRASS_PATH.getDefaultState());
         }
     }
 }

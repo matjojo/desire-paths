@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.2.3-SNAPSHOT'
+	id 'fabric-loom' version '0.2.4-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -66,19 +66,19 @@ publishing {
 	}
 }
 
-//// https://github.com/NerdHubMC/Gradle-Scripts/blob/master/scripts/fabric/dependencies/1.14.1/development_suite.gradle#L67
-//ext {
-//	// Here's what you're looking at (HWYLA)
-//	hwyla_version = "1.14-1.9.16-60"
-//}
+// https://github.com/NerdHubMC/Gradle-Scripts/blob/master/scripts/fabric/dependencies/1.14.1/development_suite.gradle#L67
+ext {
+	// Here's what you're looking at (HWYLA)
+	hwyla_version = "1.14.2-1.9.16-62"
+}
 
 // declare all the needed repositories
-//repositories { // not working since still on API 2.7
-//	maven {
-//		name = "TehNut"
-//		url = "https://tehnut.info/maven"
-//	}
-//}
+repositories { // not working since still on API 2.7
+	maven {
+		name = "TehNut"
+		url = "https://tehnut.info/maven"
+	}
+}
 
 // declare the actual dependencies
 dependencies {
@@ -96,5 +96,7 @@ dependencies {
 
 	// modCompile HWYLA and Modmenu
 	modCompile fileTree(dir: "lib", includes: ['*.jar'], excludes: ['*-sources.jar'])
+
+    modImplementation "mcp.mobius.waila:Hwyla:${project.ext.hwyla_version}"
 
 }

@@ -20,22 +20,13 @@ public class TrampleUtil {
     static final int MAX_TRAMPLE;
     private static final int DISTANCE_MINIMUM;
     private static final int UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK;
-    private static final Map NextBlockMap;
+    private static Map NextBlockMap;
 
     static {
         DISTANCE_MINIMUM = 20; // Player moves 6, 22, 28 when crouching, walking, running.
         MAX_TRAMPLE = 5; // the amount of states that there are for the blocks
         UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK = 2;
-        NextBlockMap = Maps.newHashMap(ImmutableMap.builder()
-                .put(DesirePathBlocks.DIRT_COARSE_INTER,        Blocks.COARSE_DIRT)
-                .put(DesirePathBlocks.GRASS_DIRT_INTER,         Blocks.DIRT)
-                .put(DesirePathBlocks.MYCELIUM_DIRT_INTER,      Blocks.DIRT)
-                .put(DesirePathBlocks.PODZOL_DIRT_INTER,        Blocks.DIRT)
-                .put(Blocks.DIRT,                               DesirePathBlocks.DIRT_COARSE_INTER)
-                .put(Blocks.MYCELIUM,                           DesirePathBlocks.MYCELIUM_DIRT_INTER)
-                .put(Blocks.GRASS_BLOCK,                        DesirePathBlocks.GRASS_DIRT_INTER)
-                .put(Blocks.PODZOL,                             DesirePathBlocks.PODZOL_DIRT_INTER)
-                .build());
+
     }
 
     /**
@@ -43,6 +34,22 @@ public class TrampleUtil {
      * @return The <code>Block</code> that you want to get the 'next' <code>Block</code> of
      */
     private static Block getNextBlock(Block currentBlock) {
+
+    	if (NextBlockMap == null) { // super ugly hack to get the 1.14.3 version out,
+    		                        // after that a rewrite to put all this logic into the Block instance is in order
+		    NextBlockMap = Maps.newHashMap(ImmutableMap.builder()
+				    .put(DesirePathBlocks.DIRT_COARSE_INTER,        Blocks.COARSE_DIRT)
+				    .put(DesirePathBlocks.GRASS_DIRT_INTER,         Blocks.DIRT)
+				    .put(DesirePathBlocks.MYCELIUM_DIRT_INTER,      Blocks.DIRT)
+				    .put(DesirePathBlocks.PODZOL_DIRT_INTER,        Blocks.DIRT)
+				    .put(Blocks.DIRT,                               DesirePathBlocks.DIRT_COARSE_INTER)
+				    .put(Blocks.MYCELIUM,                           DesirePathBlocks.MYCELIUM_DIRT_INTER)
+				    .put(Blocks.GRASS_BLOCK,                        DesirePathBlocks.GRASS_DIRT_INTER)
+				    .put(Blocks.PODZOL,                             DesirePathBlocks.PODZOL_DIRT_INTER)
+				    .build());
+	    }
+
+
         Block returnable = (Block) NextBlockMap.get(currentBlock);
         if (returnable == null) {
             returnable = Blocks.DIRT;

@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -64,7 +65,7 @@ public abstract class DesirePathEatGrassGoalMixin {
         if (this.timer == 4) {
             BlockPos blockPosIsBeingEaten = new BlockPos(this.mob).down();
             if (this.world.getBlockState(blockPosIsBeingEaten).getBlock() == DesirePathBlocks.GRASS_DIRT_INTER) {
-                if (this.world.getGameRules().getBoolean("mobGriefing")) {
+                if (this.world.getGameRules().getBoolean(GameRules.MOB_GRIEFING)) {
                     // we leave the blockID being given as Grass block, since we are basically a grass block anyways,
                     // and if any other mod changes the grass blocks sounds and such those will now automatically
                     // also be used for our breaking event

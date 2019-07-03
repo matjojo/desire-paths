@@ -18,7 +18,7 @@ package com.matjojo.desire_paths.mixin;
 import com.matjojo.desire_paths.core.TrampleUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,9 +38,9 @@ public abstract class OnPlayerAddStatisticsMixin {
             //noinspection ConstantConditions
             player = (PlayerEntity) self;
         } catch (ClassCastException exception) {
-            self.sendMessage(new TextComponent("An error occurred in the DesirePaths mod. Please report this to the mod creator."));
-            self.sendMessage(new TextComponent("Please give this error log to the mod creator, it is also in the log."));
-            self.sendMessage(new TextComponent(exception.getLocalizedMessage()));
+            self.sendMessage(new LiteralText("An error occurred in the DesirePaths mod. Please report this to the mod creator."));
+            self.sendMessage(new LiteralText("Please give this error log to the mod creator, it is also in the log."));
+            self.sendMessage(new LiteralText(exception.getLocalizedMessage()));
             exception.printStackTrace();
             return;
         }
