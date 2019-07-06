@@ -4,40 +4,40 @@
       "model": "block/grass_block_snow"
     },
     "desiretramples=0,snowy=false": [
-      {"model": "block/dirt"},
-      {"model": "block/dirt","y": 90 },
-      {"model": "block/dirt","y": 180 },
-      {"model": "block/dirt","y": 270 }
+      { "model": "block/dirt"},
+      { "model": "block/dirt", "y": 90 },
+      { "model": "block/dirt", "y": 180 },
+      { "model": "block/dirt", "y": 270 }
     ],
     "desiretramples=1,snowy=false": [
-      {"model": "desire-paths:block/dirt_coarse_inter_1"},
-      {"model": "desire-paths:block/dirt_coarse_inter_1","y": 90 },
-      {"model": "desire-paths:block/dirt_coarse_inter_1","y": 180 },
-      {"model": "desire-paths:block/dirt_coarse_inter_1","y": 270 }
+      { "model": "desire-paths:block/dirt_coarse_inter_1"},
+      { "model": "desire-paths:block/dirt_coarse_inter_1", "y": 90 },
+      { "model": "desire-paths:block/dirt_coarse_inter_1", "y": 180 },
+      { "model": "desire-paths:block/dirt_coarse_inter_1", "y": 270 }
     ],
     "desiretramples=2,snowy=false": [
-      {"model": "desire-paths:block/dirt_coarse_inter_1"},
-      {"model": "desire-paths:block/dirt_coarse_inter_1","y": 90 },
-      {"model": "desire-paths:block/dirt_coarse_inter_1","y": 180 },
-      {"model": "desire-paths:block/dirt_coarse_inter_1","y": 270 }
+      { "model": "desire-paths:block/dirt_coarse_inter_1"},
+      { "model": "desire-paths:block/dirt_coarse_inter_1", "y": 90 },
+      { "model": "desire-paths:block/dirt_coarse_inter_1", "y": 180 },
+      { "model": "desire-paths:block/dirt_coarse_inter_1", "y": 270 }
     ],
     "desiretramples=3,snowy=false": [
-      {"model": "desire-paths:block/dirt_coarse_inter_2"},
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 90 },
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 180 },
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 270 }
+      { "model": "desire-paths:block/dirt_coarse_inter_2"},
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 90 },
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 180 },
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 270 }
     ],
     "desiretramples=4,snowy=false": [
-      {"model": "desire-paths:block/dirt_coarse_inter_2"},
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 90 },
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 180 },
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 270 }
+      { "model": "desire-paths:block/dirt_coarse_inter_2"},
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 90 },
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 180 },
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 270 }
     ],
     "desiretramples=5,snowy=false": [
-      {"model": "desire-paths:block/dirt_coarse_inter_2"},
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 90 },
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 180 },
-      {"model": "desire-paths:block/dirt_coarse_inter_2","y": 270 }
+      { "model": "desire-paths:block/dirt_coarse_inter_2"},
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 90 },
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 180 },
+      { "model": "desire-paths:block/dirt_coarse_inter_2", "y": 270 }
     ]
   }
 }
