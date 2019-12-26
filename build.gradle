@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.2.4-SNAPSHOT'
+	id 'fabric-loom' version '0.2.7-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -69,7 +69,7 @@ publishing {
 // https://github.com/NerdHubMC/Gradle-Scripts/blob/master/scripts/fabric/dependencies/1.14.1/development_suite.gradle#L67
 ext {
 	// Here's what you're looking at (HWYLA)
-	hwyla_version = "1.14.2-1.9.16-62"
+	hwyla_version = "1.15-pre4-1.9.19-70"
 }
 
 // declare all the needed repositories

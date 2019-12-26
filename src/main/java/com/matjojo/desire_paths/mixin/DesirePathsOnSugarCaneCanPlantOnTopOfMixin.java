@@ -5,7 +5,7 @@ import com.matjojo.desire_paths.core.Util;
 import com.matjojo.desire_paths.data.Blocks.Trampleable;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ViewableWorld;
+import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -35,14 +35,14 @@ public abstract class DesirePathsOnSugarCaneCanPlantOnTopOfMixin {
      * @author Matjojo
      * @reason To make sure sugarcane can also be placed on other blocks
      */
-    @Inject(at = @At(value = "RETURN", ordinal = 2), method = "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/ViewableWorld;Lnet/minecraft/util/math/BlockPos;)Z", cancellable = true)
-    private void DesirePathOnSugarCaneCanPlantOnTopOfMixin(BlockState blockState_1, ViewableWorld world, BlockPos intendedPosition, CallbackInfoReturnable<Boolean> cir) {
-        if (world.getBlockState(intendedPosition.down())
+    @Inject(at = @At(value = "RETURN", ordinal = 2), method = "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z", cancellable = true)
+    private void DesirePathOnSugarCaneCanPlantOnTopOfMixin(BlockState blockState_1, WorldView worldView, BlockPos intendedPosition, CallbackInfoReturnable<Boolean> cir) {
+        if (worldView.getBlockState(intendedPosition.down())
                 .getBlock()
                 .getDefaultState()
                 .getProperties()
                 .contains(Util.DESIRE_PATH_PROPERTY) && // we check if the block is a trampleable
-                Trampleable.isNextToValidWater(world, intendedPosition.down()) // and after that if the block is next to water
+                Trampleable.isNextToValidWater(worldView, intendedPosition.down()) // and after that if the block is next to water
         ) {
             cir.setReturnValue(true);
         }

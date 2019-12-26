@@ -17,21 +17,18 @@ package com.matjojo.desire_paths.data.Blocks;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.matjojo.desire_paths.core.TrampleUtil;
 import com.matjojo.desire_paths.core.Util;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.ViewableWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
 import java.util.Map;
-import java.util.Random;
 
 public class Trampleable extends GrassBlock implements Fertilizable {
 
@@ -75,15 +72,9 @@ public class Trampleable extends GrassBlock implements Fertilizable {
     }
 
     @Override
-    protected void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory) {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> stateFactory) {
         super.appendProperties(stateFactory);
         stateFactory.add(Util.DESIRE_PATH_PROPERTY);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onRandomTick(BlockState state, World world, BlockPos position, Random random) {
-        TrampleUtil.triggerUnTrample(state, world, position);
     }
 
     @Override
@@ -95,7 +86,7 @@ public class Trampleable extends GrassBlock implements Fertilizable {
         return returnable;
     }
 
-    public static boolean isNextToValidWater(ViewableWorld world, BlockPos position) {
+    public static boolean isNextToValidWater(WorldView world, BlockPos position) {
         for (Direction offset : Direction.Type.HORIZONTAL) {
             BlockState blockNextTo = world.getBlockState(position.offset(offset));
             FluidState fluidNextTo = world.getFluidState(position.offset(offset));
