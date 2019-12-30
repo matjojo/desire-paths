@@ -14,6 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Map;
+import java.util.Random;
 
 public class TrampleUtil {
 
@@ -21,12 +22,15 @@ public class TrampleUtil {
     private static final int DISTANCE_MINIMUM;
     private static final int UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK;
     private static Map NextBlockMap;
+	private static Random RANDOM;
+
 
     static {
         DISTANCE_MINIMUM = 20; // Player moves 6, 22, 28 when crouching, walking, running.
         MAX_TRAMPLE = 5; // the amount of states that there are for the blocks
         UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK = 2;
 
+        RANDOM = new Random();
     }
 
     /**
@@ -89,12 +93,14 @@ public class TrampleUtil {
     }
 
     public static void triggerTrample(PlayerEntity player) {
-        BlockPos blockPositionBelowPlayer = new BlockPos(MathHelper.floor(player.x), MathHelper.floor(player.y) - 1, MathHelper.floor(player.z));
+        BlockPos blockPositionBelowPlayer = new BlockPos(MathHelper.floor(player.getX()),
+		                                                MathHelper.floor(player.getY() )- 1,
+		                                                MathHelper.floor(player.getZ()));
         BlockState blockStateBelowPlayer = player.world.getBlockState(blockPositionBelowPlayer);
 
         BlockState nextState = TrampleUtil.getNextTrampleableBlockState(blockStateBelowPlayer);
         if (nextState != null &&
-            player.getRand().nextDouble() < DesirePathConfig.TRAMPLE_CHANCE ) {
+            RANDOM.nextDouble() < DesirePathConfig.TRAMPLE_CHANCE ) {
                 player.world.setBlockState(blockPositionBelowPlayer, nextState);
         }
     }

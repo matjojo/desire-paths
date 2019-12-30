@@ -5,7 +5,7 @@ import com.matjojo.desire_paths.core.Util;
 import com.matjojo.desire_paths.data.Blocks.Trampleable;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ViewableWorld;
+import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -35,8 +35,8 @@ public abstract class DesirePathsOnSugarCaneCanPlantOnTopOfMixin {
      * @author Matjojo
      * @reason To make sure sugarcane can also be placed on other blocks
      */
-    @Inject(at = @At(value = "RETURN", ordinal = 2), method = "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/ViewableWorld;Lnet/minecraft/util/math/BlockPos;)Z", cancellable = true)
-    private void DesirePathOnSugarCaneCanPlantOnTopOfMixin(BlockState blockState_1, ViewableWorld world, BlockPos intendedPosition, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(at = @At(value = "RETURN", ordinal = 2), method = "canPlaceAt(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z", cancellable = true)
+    private void DesirePathOnSugarCaneCanPlantOnTopOfMixin(BlockState blockState_1, WorldView world, BlockPos intendedPosition, CallbackInfoReturnable<Boolean> cir) {
         if (world.getBlockState(intendedPosition.down())
                 .getBlock()
                 .getDefaultState()
