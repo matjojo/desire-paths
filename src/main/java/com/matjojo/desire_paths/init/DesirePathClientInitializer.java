@@ -18,9 +18,12 @@ package com.matjojo.desire_paths.init;
 
 import com.matjojo.desire_paths.data.Blocks.DesirePathBlocks;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.color.block.BlockColorProvider;
+import net.minecraft.client.render.RenderLayer;
 
 public class DesirePathClientInitializer implements ClientModInitializer {
     @Override
@@ -29,5 +32,9 @@ public class DesirePathClientInitializer implements ClientModInitializer {
             BlockColorProvider provider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
             return provider == null ? -1 : provider.getColor(block, pos, world, layer);
         }, DesirePathBlocks.GRASS_DIRT_INTER);
+
+		for (Block block : DesirePathBlocks.getBlocks()) {
+		    BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutoutMipped());
+		}
     }
 }
