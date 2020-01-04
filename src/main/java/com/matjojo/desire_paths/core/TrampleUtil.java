@@ -28,7 +28,7 @@ public class TrampleUtil {
     static {
         DISTANCE_MINIMUM = 20; // Player moves 6, 22, 28 when crouching, walking, running.
         MAX_TRAMPLE = 5; // the amount of states that there are for the blocks
-        UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK = 2;
+        UNTRAMPLE_ATTEMPTS_PER_RANDOM_TICK = 1;
 
         RANDOM = new Random();
     }
