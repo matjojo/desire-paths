@@ -30,7 +30,7 @@
   "mixins": [
     "desire-paths.mixins.json"
   ],
-  "requires": {
+  "depends": {
     "fabricloader": ">=0.4.0",
     "fabric": "*"
   },
