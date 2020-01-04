@@ -26,13 +26,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(net.minecraft.entity.player.PlayerEntity.class)
-public abstract class OnPlayerAddStatisticsMixin {
+public abstract class OnPlayerAddStatisticsMixin{
 
-
-    @Inject(method = "method_7282(DDD)V", at = @At("RETURN"))
+	@Inject(method = "method_7282(DDD)V", at = @At("RETURN"))
     private void onPlayerAddStatisticsMixin(double x, double y, double z, CallbackInfo ci) {
-        //noinspection ConstantConditions
-        Entity self = (Entity) (Object) this; // this is a bit of a hack but this is how it works with mixin.
+		//noinspection ConstantConditions
+		Entity self = (Entity) (Object) this; // this is a bit of a hack but this is how it works with mixin.
         PlayerEntity player;
         try {
             //noinspection ConstantConditions

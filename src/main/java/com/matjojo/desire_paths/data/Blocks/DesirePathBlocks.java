@@ -3,8 +3,10 @@ package com.matjojo.desire_paths.data.Blocks;
 import com.google.common.collect.Sets;
 import com.matjojo.desire_paths.core.Util;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Set;
@@ -23,6 +25,11 @@ public class DesirePathBlocks {
         Registry.register(Registry.BLOCK, Util.getIdentifier("grass_dirt_inter"), GRASS_DIRT_INTER);
         Registry.register(Registry.BLOCK, Util.getIdentifier("podzol_dirt_inter"), PODZOL_DIRT_INTER);
         Registry.register(Registry.BLOCK, Util.getIdentifier("mycelium_dirt_inter"), MYCELIUM_DIRT_INTER);
+
+		for (Block block : BLOCK_LIST){
+		    BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutoutMipped());
+		}
+
     }
 
     public static Set<Block> getBlocks() {
