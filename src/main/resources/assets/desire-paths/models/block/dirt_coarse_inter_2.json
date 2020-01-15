@@ -1,9 +1,9 @@
 {
   "parent": "desire-paths:block/one_side_one_top",
   "textures": {
-    "bottom": "block/dirt",
-    "particle" : "block/dirt",
-    "top": "desire-paths:block/dirt_coarse_inter_top_2",
-    "side": "block/dirt"
+    "bottom":   "block/dirt",
+    "particle": "block/dirt",
+    "top":      "desire-paths:block/dirt_coarse_inter_top_2",
+    "side":     "block/dirt"
   }
 }
