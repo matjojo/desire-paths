@@ -1,9 +1,10 @@
 {
-  "parent": "desire-paths:block/one_side_one_top",
+  "parent": "desire-paths:block/block_one_side_one_top_overlay_on_top",
   "textures": {
-    "bottom":    "block/dirt",
-    "particle" : "block/dirt",
-    "top":       "desire-paths:block/mycelium_dirt_inter_top_1",
-    "side":      "block/mycelium_side"
+    "bottom":     "block/dirt",
+    "particle":   "block/dirt",
+    "top":        "block/dirt",
+    "side":       "block/mycelium_side",
+    "overlaytop": "desire-paths:block/mycelium_dirt_inter_top_1"
   }
 }
