@@ -4,10 +4,10 @@
       "model": "block/grass_block_snow"
     },
     "desiretramples=0,snowy=false": [
-      { "model": "block/grass_block" },
-      { "model": "block/grass_block", "y": 90 },
-      { "model": "block/grass_block", "y": 180 },
-      { "model": "block/grass_block", "y": 270 }
+      { "model": "desire-paths:block/grass_dirt_inter_0" },
+      { "model": "desire-paths:block/grass_dirt_inter_0", "y": 90 },
+      { "model": "desire-paths:block/grass_dirt_inter_0", "y": 180 },
+      { "model": "desire-paths:block/grass_dirt_inter_0", "y": 270 }
     ],
     "desiretramples=1,snowy=false": [
       { "model": "desire-paths:block/grass_dirt_inter_1" },
