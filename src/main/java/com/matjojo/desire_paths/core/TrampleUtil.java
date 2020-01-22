@@ -89,7 +89,7 @@ public class TrampleUtil {
                 !player.hasVehicle() &&
                 player.onGround &&
                 !player.isSneaking() &&
-                !player.isInsideWater();
+                !player.isTouchingWater();
     }
 
     public static void triggerTrample(PlayerEntity player) {
